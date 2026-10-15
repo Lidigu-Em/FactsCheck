@@ -1,4 +1,4 @@
-# Congo Check MpoxFacts — Next.js Frontend
+#   News CheckFacts — Next.js Frontend
 
 Bilingual (English 🇬🇧 & Kiswahili 🇹🇿) fact-checking portal inspired by [Congo Check MpoxFacts](https://congocheck.net/category/actus/fact-check/mpoxfacts/).
 
