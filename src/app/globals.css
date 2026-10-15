@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-family: 'Inter', ui-sans-serif, system-ui; }
+  body { @apply bg-brand-light text-brand-slate antialiased; }
+  h1, h2, h3, h4 { @apply font-bold text-brand-dark; }
+  a { @apply no-underline; }
+}
+
+@layer components {
+  /* ── Verdict badge ────────────────────────────────────────────── */
+  .verdict-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide text-white shadow-sm;
+  }
+  .verdict-false      { background-color: #DC2626; }
+  .verdict-true       { background-color: #16A34A; }
+  .verdict-misleading { background-color: #D97706; }
+  .verdict-unproven   { background-color: #6B7280; }
+
+  /* ── Claim box ────────────────────────────────────────────────── */
+  .claim-box {
+    @apply relative bg-white border-l-4 border-brand-red rounded-r-xl p-5 shadow-sm;
+  }
+
+  /* ── Prose ────────────────────────────────────────────────────── */
+  .article-prose h2, .article-prose h3 { @apply mt-6 mb-2 text-brand-dark; }
+  .article-prose h2 { @apply text-xl font-bold; }
+  .article-prose h3 { @apply text-lg font-semibold; }
+  .article-prose p  { @apply mb-4 leading-relaxed text-brand-slate; }
+  .article-prose ul { @apply list-disc pl-5 mb-4 space-y-1; }
+  .article-prose ol { @apply list-decimal pl-5 mb-4 space-y-1; }
+  .article-prose li { @apply leading-relaxed; }
+  .article-prose strong { @apply font-semibold text-brand-dark; }
+  .article-prose a  { @apply text-brand-red underline; }
+  .article-prose blockquote { @apply pl-4 border-l-4 border-brand-red italic text-brand-muted; }
+}
