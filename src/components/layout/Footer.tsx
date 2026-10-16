@@ -27,8 +27,10 @@ export default function Footer({ lang, site }: FooterProps) {
                 />
               ) : null}
               <div>
-                <div className="text-white font-black text-xl leading-none">{site.siteName || "CONGO CHECK"}</div>
-                <div className="text-red-400 text-xs font-semibold uppercase tracking-widest">{site.tagline || "MpoxFacts"}</div>
+                <div className="text-white font-black text-xl leading-none">{site.siteName || "KENYA CHECK"}</div>
+                {site.tagline ? (
+                  <div className="text-red-400 text-xs font-semibold uppercase tracking-widest">{site.tagline}</div>
+                ) : null}
               </div>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed mb-4">
@@ -56,7 +58,7 @@ export default function Footer({ lang, site }: FooterProps) {
               ) : (
                 <>
                   <li>
-                    <Link href={`/${lang}/mpoxfacts`} className="hover:text-white transition-colors">
+                    <Link href={`/${lang}`} className="hover:text-white transition-colors">
                       {t.nav.mpoxfacts}
                     </Link>
                   </li>
@@ -119,8 +121,8 @@ export default function Footer({ lang, site }: FooterProps) {
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
           <span>{site.footerCopyright}</span>
           <div className="flex gap-4">
-            <Link href="/en/mpoxfacts" className="hover:text-gray-300">English</Link>
-            <Link href="/sw/mpoxfacts" className="hover:text-gray-300">Kiswahili</Link>
+            <Link href="/en" className="hover:text-gray-300">English</Link>
+            <Link href="/sw" className="hover:text-gray-300">Kiswahili</Link>
           </div>
         </div>
       </div>

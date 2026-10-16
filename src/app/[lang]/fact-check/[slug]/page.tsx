@@ -72,7 +72,7 @@ export default async function FactCheckDetail({
       <div className="max-w-3xl mx-auto px-4 py-10">
         {/* Back link */}
         <Link
-          href={`/${lang}/mpoxfacts`}
+          href={`/${lang}`}
           className="inline-flex items-center gap-1.5 text-sm text-brand-muted hover:text-red-600 mb-6 transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />

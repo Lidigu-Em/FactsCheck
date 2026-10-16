@@ -41,7 +41,7 @@ export default function ReportPage() {
         <h2 className="text-2xl font-black text-brand-dark mb-3">{t.report.successTitle}</h2>
         <p className="text-gray-600 leading-relaxed">{t.report.successText}</p>
         <a
-          href={`/${lang}/mpoxfacts`}
+          href={`/${lang}`}
           className="mt-6 inline-block bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors"
         >
           ← {t.nav.mpoxfacts}

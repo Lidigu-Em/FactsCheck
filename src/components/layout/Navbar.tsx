@@ -24,7 +24,7 @@ export default function Navbar({ lang, siteName, tagline, logo, logoAlt }: Navba
   const altPath = pathname.replace(`/${lang}`, `/${otherLang}`);
 
   const navLinks = [
-    { href: `/${lang}/mpoxfacts`, label: t.nav.mpoxfacts },
+    { href: `/${lang}`, label: t.nav.mpoxfacts },
     { href: `/${lang}/about`, label: t.nav.about },
   ];
 
@@ -32,7 +32,7 @@ export default function Navbar({ lang, siteName, tagline, logo, logoAlt }: Navba
     <header className="bg-brand-dark text-white sticky top-0 z-40 shadow-lg">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         {/* Logo */}
-        <Link href={`/${lang}/mpoxfacts`} className="flex items-center gap-2.5">
+        <Link href={`/${lang}`} className="flex items-center gap-2.5">
           {logo ? (
             <img
               src={logo}
@@ -43,8 +43,10 @@ export default function Navbar({ lang, siteName, tagline, logo, logoAlt }: Navba
             <span className="text-red-400 font-black text-2xl tracking-tight">✓</span>
           )}
           <div>
-            <div className="font-black text-lg leading-none text-white tracking-tight">{siteName || "CONGO CHECK"}</div>
-            <div className="text-xs text-red-400 font-semibold uppercase tracking-widest">{tagline || "MpoxFacts"}</div>
+            <div className="font-black text-lg leading-none text-white tracking-tight">{siteName || "KENYA CHECK"}</div>
+            {tagline ? (
+              <div className="text-xs text-red-400 font-semibold uppercase tracking-widest">{tagline}</div>
+            ) : null}
           </div>
         </Link>
 

@@ -382,14 +382,14 @@
     "locales": {
       "en": {
         "siteName": "Kenya Check - EbolaFacts",
-        "tagline": "Bilingual Fact-Checking Portal & Epidemic Verification Desk",
+        "tagline": "",
         "emergencyBannerText": "Ebola Emergency Hotline (Toll-Free DRC): 109 / 110 | Africa CDC Support: +251 11 551 7700",
         "aboutBrief": "Kenya Check is the leading independent fact-checking organization in the Democratic Republic of the Congo and the Great Lakes region, certified by the International Fact-Checking Network (IFCN).",
         "footerCopyright": "\u00a9 2025 Kenya Check. Verified under IFCN Code of Principles. Available in English & Kiswahili."
       },
       "sw": {
         "siteName": "Kenya Check - Ukweli Kuhusu Ebola",
-        "tagline": "Jukwaa la Ukaguzi wa Habari na Ukweli Kuhusu Magonjwa ya Mlipuko",
+        "tagline": "",
         "emergencyBannerText": "Nambari ya Dharura ya Ebola (Bila Malipo DRC): 109 / 110 | Msaada wa Africa CDC: +251 11 551 7700",
         "aboutBrief": "Kenya Check ni shirika huru linaloongoza kwa ukaguzi wa taarifa nchini Jamhuri ya Kidemokrasia ya Kongo na ukanda wa Maziwa Makuu, lililoidhinishwa na Mtandao wa Kimataifa wa Wakaguzi wa Habari (IFCN).",
         "footerCopyright": "\u00a9 2025 Kenya Check. Imethibitishwa chini ya Kanuni za IFCN. Inapatikana kwa Kiingereza na Kiswahili."
