@@ -1,6 +1,0 @@
-{
-  "/_not-found/page": "app/_not-found/page.js",
-  "/[lang]/page": "app/[lang]/page.js",
-  "/[lang]/mpoxfacts/page": "app/[lang]/mpoxfacts/page.js",
-  "/[lang]/fact-check/[slug]/page": "app/[lang]/fact-check/[slug]/page.js"
-}

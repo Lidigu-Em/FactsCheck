@@ -259,7 +259,7 @@ export async function getSiteSetting(locale: Locale): Promise<SiteSetting> {
       siteName: a.siteName || fallback.siteName,
       siteTitle: a.siteTitle || fallback.siteTitle,
       tagline: a.tagline || fallback.tagline,
-      logo: a.logo?.data?.attributes?.url ? `${STRAPI_URL}${a.logo.data.attributes.url}` : fallback.logo,
+      logo: a.logo?.data?.attributes?.url ? formatImageUrl(a.logo.data.attributes.url) : fallback.logo,
       logoAlt: a.logoAlt || fallback.logoAlt,
       emergencyBannerText: a.emergencyBannerText || fallback.emergencyBannerText,
       emergencyPhone: a.emergencyPhone || fallback.emergencyPhone,
@@ -314,7 +314,7 @@ export async function getMpoxHubPage(locale: Locale): Promise<MpoxHubPage> {
       featuredArticleSlug: a.featuredArticle?.data?.attributes?.slug || undefined,
       featuredTitleOverride: a.featuredTitleOverride || undefined,
       featuredSummaryOverride: a.featuredSummaryOverride || undefined,
-      featuredImageOverride: a.featuredImageOverride?.data?.attributes?.url ? `${STRAPI_URL}${a.featuredImageOverride.data.attributes.url}` : undefined,
+      featuredImageOverride: a.featuredImageOverride?.data?.attributes?.url ? formatImageUrl(a.featuredImageOverride.data.attributes.url) : undefined,
     };
   } catch {
     return fallback;
