@@ -335,9 +335,12 @@ export async function getAboutPage(locale: Locale): Promise<AboutPageData> {
     const a = data.data.attributes;
     return {
       title: a.title || undefined,
+      intro: a.intro || undefined,
       mission: a.mission || undefined,
-      protocol3PFCP: a.protocol3PFCP || undefined,
-      ifcnPrinciples: a.ifcnPrinciples || undefined,
+      verificationSteps: a.verificationSteps || a.protocol3PFCP || undefined,
+      protocol3PFCP: a.protocol3PFCP || a.verificationSteps || undefined,
+      editorialPrinciples: a.editorialPrinciples || a.ifcnPrinciples || undefined,
+      ifcnPrinciples: a.ifcnPrinciples || a.editorialPrinciples || undefined,
       correctionPolicy: a.correctionPolicy || undefined,
       teamSummary: a.teamSummary || undefined,
     };

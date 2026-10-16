@@ -107,10 +107,14 @@ export interface MpoxHubPage {
 
 export interface AboutPageData {
   title?: string;
+  intro?: string;
   mission?: string;
+  verificationSteps?: string;
   protocol3PFCP?: string;
+  editorialPrinciples?: string;
   ifcnPrinciples?: string;
   correctionPolicy?: string;
   teamSummary?: string;
 }
+
 
