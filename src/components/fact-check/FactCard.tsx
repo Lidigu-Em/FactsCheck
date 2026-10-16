@@ -105,7 +105,7 @@ export default function FactCard({
           </div>
           <div className="flex items-center justify-between text-xs text-gray-400">
             <span className="flex items-center gap-1">
-              <User className="w-3 h-3" /> {fc.author?.name ?? "Congo Check"}
+              <User className="w-3 h-3" /> {fc.author?.name ?? "Kenya Check"}
             </span>
             <span className="flex items-center gap-1 font-medium text-red-600 group-hover:underline">
               {t.factCard.readMore} <ArrowRight className="w-3 h-3" />

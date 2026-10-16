@@ -42,8 +42,8 @@ export default async function FactCheckDetail({
     claimReviewed: fc.claim,
     author: {
       "@type": "Organization",
-      name: "Congo Check",
-      url: "https://congocheck.net",
+      name: "Kenya Check",
+      url: "https://kenyacheck.org",
     },
     reviewRating: {
       "@type": "Rating",

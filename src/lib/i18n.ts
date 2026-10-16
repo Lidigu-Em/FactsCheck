@@ -6,7 +6,7 @@ export const defaultLocale: Locale = "en";
 const translations = {
   en: {
     nav: {
-      mpoxfacts: "MpoxFacts",
+      mpoxfacts: "EbolaFacts",
       factchecks: "Fact Checks",
       about: "About",
       report: "Report a Rumor",
@@ -41,7 +41,7 @@ const translations = {
       share: "Share this fact check",
       whatsapp: "Share on WhatsApp",
       copyLink: "Copy Link",
-      backToFeed: "← Back to MpoxFacts",
+      backToFeed: "← Back to EbolaFacts",
       relatedChecks: "Related Fact Checks",
     },
     report: {
@@ -60,11 +60,11 @@ const translations = {
       successText: "Our verification desk will review this claim and publish the fact-check if relevant.",
     },
     emergency: {
-      banner: "Mpox Emergency Hotline (DRC): 109 / 110 | Africa CDC: +251 11 551 7700",
+      banner: "Ebola Emergency Hotline (DRC): 109 / 110 | Africa CDC: +251 11 551 7700",
     },
     footer: {
       ifcn: "Certified Member of the IFCN Code of Principles",
-      about: "About Congo Check",
+      about: "About Kenya Check",
       methodology: "Our Methodology",
       corrections: "Correction Policy",
     },
@@ -75,7 +75,7 @@ const translations = {
       unproven: "Unproven",
     },
     about: {
-      title: "About Congo Check & MpoxFacts",
+      title: "About Kenya Check & EbolaFacts",
       ifcnBadge: "IFCN Certified Fact-Checker",
       mission: "Mission",
       methodology: "Our 3PFCP Verification Protocol",
@@ -102,7 +102,7 @@ const translations = {
   },
   sw: {
     nav: {
-      mpoxfacts: "Ukweli Kuhusu Mpox",
+      mpoxfacts: "Ukweli Kuhusu Ebola",
       factchecks: "Ukaguzi wa Habari",
       about: "Kuhusu Sisi",
       report: "Ripoti Uvumi",
@@ -137,7 +137,7 @@ const translations = {
       share: "Shiriki ukaguzi huu",
       whatsapp: "Shiriki WhatsApp",
       copyLink: "Nakili Kiungo",
-      backToFeed: "← Rudi Ukweli Kuhusu Mpox",
+      backToFeed: "← Rudi Ukweli Kuhusu Ebola",
       relatedChecks: "Ukaguzi Unaohusiana",
     },
     report: {
@@ -156,11 +156,11 @@ const translations = {
       successText: "Dawati letu la ukaguzi litakagua madai haya na kuchapisha ukaguzi wa habari iwapo ni muhimu.",
     },
     emergency: {
-      banner: "Nambari ya Dharura ya Mpox (DRC): 109 / 110 | Africa CDC: +251 11 551 7700",
+      banner: "Nambari ya Dharura ya Ebola (DRC): 109 / 110 | Africa CDC: +251 11 551 7700",
     },
     footer: {
       ifcn: "Mwanachama Aliyeidhinishwa wa Kanuni za IFCN",
-      about: "Kuhusu Congo Check",
+      about: "Kuhusu Kenya Check",
       methodology: "Mbinu Zetu",
       corrections: "Sera ya Masahihisho",
     },
@@ -171,7 +171,7 @@ const translations = {
       unproven: "Haijathibitishwa",
     },
     about: {
-      title: "Kuhusu Congo Check & Ukweli wa Mpox",
+      title: "Kuhusu Kenya Check & Ukweli wa Ebola",
       ifcnBadge: "Mkaguzi wa Habari Aliyeidhinishwa na IFCN",
       mission: "Dhamira",
       methodology: "Itifaki Yetu ya Uthibitishaji wa 3PFCP",

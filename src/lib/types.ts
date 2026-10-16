@@ -104,3 +104,13 @@ export interface MpoxHubPage {
   featuredSummaryOverride?: string;
   featuredImageOverride?: string;
 }
+
+export interface AboutPageData {
+  title?: string;
+  mission?: string;
+  protocol3PFCP?: string;
+  ifcnPrinciples?: string;
+  correctionPolicy?: string;
+  teamSummary?: string;
+}
+

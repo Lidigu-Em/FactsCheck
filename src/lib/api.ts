@@ -1,7 +1,7 @@
 import type { Locale } from "./types";
 import type {
   FactCheck, VerdictInfo, CategoryInfo, AuthorInfo,
-  SiteSetting, MpoxHubPage,
+  SiteSetting, MpoxHubPage, AboutPageData,
 } from "./types";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
@@ -234,17 +234,17 @@ export async function getSiteSetting(locale: Locale): Promise<SiteSetting> {
 
   const fallback: SiteSetting = {
     siteName: loc.siteName || "CONGO CHECK",
-    siteTitle: loc.siteTitle || (locale === "sw" ? "Congo Check MpoxFacts — Ukweli Kuhusu Mpox" : "Congo Check MpoxFacts — Verified Health Investigations"),
+    siteTitle: loc.siteTitle || (locale === "sw" ? "Kenya Check EbolaFacts — Ukweli Kuhusu Ebola" : "Kenya Check EbolaFacts — Verified Health Investigations"),
     tagline: loc.tagline || "MpoxFacts",
     logo: raw.logo || "",
-    logoAlt: loc.logoAlt || "Congo Check Logo",
+    logoAlt: loc.logoAlt || "Kenya Check Logo",
     emergencyBannerText: loc.emergencyBannerText,
     emergencyPhone: raw.emergencyPhone,
     emergencyWhatsApp: raw.emergencyWhatsApp,
     aboutBrief: loc.aboutBrief,
-    footerText: loc.footerText || (locale === "sw" ? "Congo Check ni shirika la kwanza na pekee huru la ukaguzi wa ukweli la Jamhuri ya Kidemokrasia ya Kongo lililoidhinishwa na IFCN." : "Congo Check is the first and only independent fact-checking platform in the DRC certified by the International Fact-Checking Network (IFCN)."),
+    footerText: loc.footerText || (locale === "sw" ? "Kenya Check ni shirika la kwanza na pekee huru la ukaguzi wa ukweli la Jamhuri ya Kidemokrasia ya Kongo lililoidhinishwa na IFCN." : "Kenya Check is the first and only independent fact-checking platform in the DRC certified by the International Fact-Checking Network (IFCN)."),
     footerIfcnNotice: loc.footerIfcnNotice || (locale === "sw" ? "Mwanachama Aliyeidhinishwa wa Kanuni za IFCN" : "Certified Member of the IFCN Code of Principles"),
-    footerCopyright: loc.footerCopyright || `© ${new Date().getFullYear()} Congo Check. All rights reserved.`,
+    footerCopyright: loc.footerCopyright || `© ${new Date().getFullYear()} Kenya Check. All rights reserved.`,
     footerQuickLinks: loc.footerQuickLinks || undefined,
     socialLinks: raw.socialLinks,
   };
@@ -320,3 +320,29 @@ export async function getMpoxHubPage(locale: Locale): Promise<MpoxHubPage> {
     return fallback;
   }
 }
+
+export async function getAboutPage(locale: Locale): Promise<AboutPageData> {
+  const fallback: AboutPageData = {};
+
+  if (!STRAPI_URL) return fallback;
+
+  try {
+    let data: any = await strapiGet(`about-page?locale=${locale}`);
+    if (!data.data?.attributes && locale !== "en") {
+      data = await strapiGet(`about-page?locale=en`);
+    }
+    if (!data.data?.attributes) return fallback;
+    const a = data.data.attributes;
+    return {
+      title: a.title || undefined,
+      mission: a.mission || undefined,
+      protocol3PFCP: a.protocol3PFCP || undefined,
+      ifcnPrinciples: a.ifcnPrinciples || undefined,
+      correctionPolicy: a.correctionPolicy || undefined,
+      teamSummary: a.teamSummary || undefined,
+    };
+  } catch {
+    return fallback;
+  }
+}
+

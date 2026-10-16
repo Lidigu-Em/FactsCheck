@@ -13,8 +13,8 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export const metadata = {
-  title: "MpoxFacts — Congo Check",
-  description: "Verified bilingual fact-checks on Mpox misinformation in Central and East Africa",
+  title: "EbolaFacts — Kenya Check",
+  description: "Verified bilingual fact-checks on Ebola misinformation in Central and East Africa",
 };
 
 export default async function MpoxFacts({ params }: { params: { lang: Locale } }) {
@@ -37,7 +37,7 @@ export default async function MpoxFacts({ params }: { params: { lang: Locale } }
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-red-600/20 border border-red-500/40 text-red-300 text-xs font-semibold px-4 py-1.5 rounded-full mb-5 uppercase tracking-widest">
             <AlertTriangle className="w-3.5 h-3.5" />
-            MpoxFacts
+            EbolaFacts
           </div>
           <h1 className="text-3xl md:text-5xl font-black leading-tight mb-4">{hub.heroTitle}</h1>
           <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8">
