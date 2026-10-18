@@ -9,7 +9,7 @@ const translations = {
       mpoxfacts: "EbolaFacts",
       factchecks: "Fact Checks",
       about: "About",
-      report: "Report a Rumor",
+      report: "Submit a Claim",
     },
     factCard: {
       readMore: "Read Full Investigation",
@@ -30,7 +30,7 @@ const translations = {
       viewAll: "View All Fact Checks",
     },
     hub: {
-      reportButton: "Submit a Rumor",
+      reportButton: "Submit a Claim",
       whatsappShare: "Share on WhatsApp",
       learnMore: "Read Our Methodology",
     },
@@ -47,7 +47,7 @@ const translations = {
       relatedChecks: "Related Fact Checks",
     },
     report: {
-      title: "Report a Rumor — Ripoti Uvumi",
+      title: "Submit a Claim — Tuma Madai",
       subtitle: "Spotted dangerous health misinformation? Send us the claim for investigation.",
       fields: {
         claim: "What is the claim?",
@@ -128,7 +128,7 @@ const translations = {
       mpoxfacts: "Ukweli Kuhusu Ebola",
       factchecks: "Ukaguzi wa Habari",
       about: "Kuhusu Sisi",
-      report: "Ripoti Uvumi",
+      report: "Tuma Madai",
     },
     factCard: {
       readMore: "Soma Uchunguzi Kamili",
@@ -149,7 +149,7 @@ const translations = {
       viewAll: "Tazama Ukaguzi Wote",
     },
     hub: {
-      reportButton: "Tuma Uvumi",
+      reportButton: "Tuma Madai",
       whatsappShare: "Shiriki WhatsApp",
       learnMore: "Soma Mbinu Zetu",
     },
@@ -166,7 +166,7 @@ const translations = {
       relatedChecks: "Ukaguzi Unaohusiana",
     },
     report: {
-      title: "Ripoti Uvumi — Report a Rumor",
+      title: "Tuma Madai — Submit a Claim",
       subtitle: "Umesikia taarifa ya uongo au hatari kuhusu afya? Tuma kwa timu yetu ya ukaguzi.",
       fields: {
         claim: "Ni madai gani?",
