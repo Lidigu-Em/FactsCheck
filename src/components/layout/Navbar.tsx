@@ -5,6 +5,7 @@ import { Menu, X, Languages, Globe } from "lucide-react";
 import type { Locale } from "@/lib/types";
 import { useTranslations } from "@/lib/i18n";
 import { usePathname } from "next/navigation";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 interface NavbarProps {
   lang: Locale;
@@ -29,7 +30,7 @@ export default function Navbar({ lang, siteName, tagline, logo, logoAlt }: Navba
   ];
 
   return (
-    <header className="bg-brand-dark text-white sticky top-0 z-40 shadow-lg">
+    <header className="bg-brand-dark text-white sticky top-0 z-40 shadow-lg border-b border-gray-800">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         {/* Logo */}
         <Link href={`/${lang}`} className="flex items-center gap-2.5">
@@ -69,8 +70,9 @@ export default function Navbar({ lang, siteName, tagline, logo, logoAlt }: Navba
           </Link>
         </nav>
 
-        {/* Language switcher + mobile hamburger */}
-        <div className="flex items-center gap-3">
+        {/* Theme toggle + Language switcher + mobile hamburger */}
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <ThemeToggle />
           <Link
             href={altPath}
             className="hidden sm:flex items-center gap-1.5 text-xs font-semibold text-gray-300 hover:text-white border border-gray-600 hover:border-gray-400 px-3 py-1.5 rounded-full transition-all"
@@ -79,7 +81,7 @@ export default function Navbar({ lang, siteName, tagline, logo, logoAlt }: Navba
             {t.lang[otherLang]}
           </Link>
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-white p-1"
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
           >
@@ -108,10 +110,14 @@ export default function Navbar({ lang, siteName, tagline, logo, logoAlt }: Navba
           >
             {t.nav.report}
           </Link>
+          <div className="flex items-center justify-between pt-2 border-t border-gray-700">
+            <span className="text-xs text-gray-400">Theme</span>
+            <ThemeToggle />
+          </div>
           <Link
             href={altPath}
             onClick={() => setOpen(false)}
-            className="flex items-center gap-2 text-gray-400 text-sm"
+            className="flex items-center gap-2 text-gray-400 text-sm pt-2"
           >
             <Languages className="w-4 h-4" />
             {lang === "en" ? "Kiswahili" : "English"}

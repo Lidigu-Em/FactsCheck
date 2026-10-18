@@ -33,26 +33,54 @@ export default async function HomePage({ params }: { params: { lang: Locale } })
     <div>
       {/* ── 1. Fact Check (First section after Navbar) ───────────────── */}
       <section className="max-w-6xl mx-auto px-4 py-10 md:py-12">
-        <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200">
+        <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200 dark:border-gray-800">
           <div>
-            <h1 className="text-3xl md:text-4xl font-black text-brand-dark tracking-tight">
+            <h1 className="text-3xl md:text-4xl font-black text-brand-dark dark:text-white tracking-tight">
               {hub.feedTitle || t.feed.title}
             </h1>
           </div>
           <Link
             href={`/${lang}/fact-checks`}
-            className="inline-flex items-center gap-1.5 text-sm font-bold text-red-600 hover:text-red-700 transition-colors"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors"
           >
             {t.feed.viewAll} <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        {/* Grid of 6 latest cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {latestFactChecks.map((fc) => (
-            <FactCard key={fc.slug} fc={fc} lang={lang} />
-          ))}
-        </div>
+        {/* Magazine Grid (NewScientist style) */}
+        {latestFactChecks.length >= 3 ? (
+          <>
+            {/* Top Block: 1 prominent card left (8 cols), 2 stacked cards right (4 cols) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+              <div className="lg:col-span-8">
+                <FactCard fc={latestFactChecks[0]} lang={lang} variant="large" />
+              </div>
+              <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
+                {latestFactChecks[1] && (
+                  <FactCard fc={latestFactChecks[1]} lang={lang} variant="horizontal" />
+                )}
+                {latestFactChecks[2] && (
+                  <FactCard fc={latestFactChecks[2]} lang={lang} variant="horizontal" />
+                )}
+              </div>
+            </div>
+
+            {/* Bottom Block: 3 standard cards */}
+            {latestFactChecks.length > 3 && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {latestFactChecks.slice(3, 6).map((fc) => (
+                  <FactCard key={fc.slug} fc={fc} lang={lang} variant="standard" />
+                ))}
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {latestFactChecks.map((fc) => (
+              <FactCard key={fc.slug} fc={fc} lang={lang} />
+            ))}
+          </div>
+        )}
 
         {/* Link / CTA to navigate to full fact checks page */}
         <div className="text-center mt-10">
@@ -87,7 +115,7 @@ export default async function HomePage({ params }: { params: { lang: Locale } })
       </section>
 
       {/* ── 3. Health Alert Card ─────────────────────────────────────── */}
-      <section className="bg-amber-50 border-b border-amber-200">
+      <section className="bg-amber-50 dark:bg-[#14120b] border-b border-amber-200 dark:border-amber-900/40">
         <div className="max-w-5xl mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row gap-6">
             <div className="flex-1">
@@ -95,20 +123,20 @@ export default async function HomePage({ params }: { params: { lang: Locale } })
                 <AlertTriangle className="w-3 h-3" />
                 {hub.alertBadgeText}
               </span>
-              <h3 className="text-xl font-bold text-amber-900 mb-2">{hub.alertHeadline}</h3>
-              <p className="text-amber-800 text-sm leading-relaxed">{hub.alertSummary}</p>
+              <h3 className="text-xl font-bold text-amber-900 dark:text-amber-300 mb-2">{hub.alertHeadline}</h3>
+              <p className="text-amber-800 dark:text-amber-200/80 text-sm leading-relaxed">{hub.alertSummary}</p>
             </div>
             <div className="md:w-72 grid grid-cols-1 gap-3">
               {hub.guidelines.map((g, i) => {
                 const Icon = iconMap[g.icon] ?? Shield;
                 return (
-                  <div key={i} className="flex items-start gap-3 bg-white border border-amber-200 rounded-xl p-3 shadow-sm">
-                    <div className="bg-amber-100 rounded-lg p-2 shrink-0">
-                      <Icon className="w-4 h-4 text-amber-700" />
+                  <div key={i} className="flex items-start gap-3 bg-white dark:bg-[#1a1811] border border-amber-200 dark:border-amber-900/40 rounded-xl p-3 shadow-sm">
+                    <div className="bg-amber-100 dark:bg-amber-900/40 rounded-lg p-2 shrink-0">
+                      <Icon className="w-4 h-4 text-amber-700 dark:text-amber-300" />
                     </div>
                     <div>
-                      <div className="text-xs font-bold text-amber-900 mb-0.5">{g.title}</div>
-                      <div className="text-xs text-amber-700 leading-relaxed">{g.desc}</div>
+                      <div className="text-xs font-bold text-amber-900 dark:text-amber-200 mb-0.5">{g.title}</div>
+                      <div className="text-xs text-amber-700 dark:text-amber-300/70 leading-relaxed">{g.desc}</div>
                     </div>
                   </div>
                 );

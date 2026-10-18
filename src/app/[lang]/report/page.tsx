@@ -54,17 +54,17 @@ export default function ReportPage() {
     <div className="max-w-2xl mx-auto px-4 py-12">
       {/* Header */}
       <div className="mb-8 text-center">
-        <div className="w-14 h-14 rounded-2xl bg-red-600 flex items-center justify-center mx-auto mb-4">
+        <div className="w-14 h-14 rounded-2xl bg-red-600 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-red-600/20">
           <MessageCircle className="w-7 h-7 text-white" />
         </div>
-        <h1 className="text-3xl font-black text-brand-dark mb-2">{t.report.title}</h1>
-        <p className="text-gray-600 leading-relaxed">{t.report.subtitle}</p>
+        <h1 className="text-3xl font-black text-brand-dark dark:text-white mb-2">{t.report.title}</h1>
+        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{t.report.subtitle}</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 space-y-5">
+      <form onSubmit={handleSubmit} className="bg-white dark:bg-[#161726] rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 space-y-5">
         {/* Claim text */}
         <div>
-          <label className="block text-sm font-semibold text-brand-dark mb-1.5">
+          <label className="block text-sm font-semibold text-brand-dark dark:text-white mb-1.5">
             {t.report.fields.claim} <span className="text-red-500">*</span>
           </label>
           <textarea
@@ -74,13 +74,13 @@ export default function ReportPage() {
             value={form.claimText}
             onChange={handleChange}
             placeholder={t.report.fields.claimPlaceholder}
-            className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-300 resize-none"
+            className="w-full border border-gray-200 dark:border-gray-800 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 bg-white dark:bg-[#1E1F30] text-brand-dark dark:text-white placeholder-gray-400 resize-none"
           />
         </div>
 
         {/* Platform */}
         <div>
-          <label className="block text-sm font-semibold text-brand-dark mb-1.5">
+          <label className="block text-sm font-semibold text-brand-dark dark:text-white mb-1.5">
             {t.report.fields.platform} <span className="text-red-500">*</span>
           </label>
           <div className="flex flex-wrap gap-2">
@@ -91,8 +91,8 @@ export default function ReportPage() {
                 onClick={() => setForm((f) => ({ ...f, sourcePlatform: p }))}
                 className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
                   form.sourcePlatform === p
-                    ? "bg-brand-dark text-white border-brand-dark"
-                    : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+                    ? "bg-brand-dark dark:bg-red-600 text-white border-transparent shadow-sm"
+                    : "bg-white dark:bg-[#1E1F30] text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-800 hover:border-gray-400 dark:hover:border-gray-700"
                 }`}
               >
                 {(t.platforms as Record<string, string>)[p] ?? p}
@@ -103,7 +103,7 @@ export default function ReportPage() {
 
         {/* Source URL */}
         <div>
-          <label className="block text-sm font-semibold text-brand-dark mb-1.5">
+          <label className="block text-sm font-semibold text-brand-dark dark:text-white mb-1.5">
             {t.report.fields.url}
           </label>
           <input
@@ -112,14 +112,14 @@ export default function ReportPage() {
             value={form.sourceUrl}
             onChange={handleChange}
             placeholder="https://..."
-            className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-300"
+            className="w-full border border-gray-200 dark:border-gray-800 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 bg-white dark:bg-[#1E1F30] text-brand-dark dark:text-white placeholder-gray-400"
           />
         </div>
 
         {/* Location */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-brand-dark mb-1.5">
+            <label className="block text-sm font-semibold text-brand-dark dark:text-white mb-1.5">
               {t.report.fields.location}
             </label>
             <input
@@ -127,11 +127,11 @@ export default function ReportPage() {
               value={form.location}
               onChange={handleChange}
               placeholder="Goma, Lubumbashi..."
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-300"
+              className="w-full border border-gray-200 dark:border-gray-800 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 bg-white dark:bg-[#1E1F30] text-brand-dark dark:text-white placeholder-gray-400"
             />
           </div>
           <div>
-            <label className="block text-sm font-semibold text-brand-dark mb-1.5">
+            <label className="block text-sm font-semibold text-brand-dark dark:text-white mb-1.5">
               {t.report.fields.contact}
             </label>
             <input
@@ -139,7 +139,7 @@ export default function ReportPage() {
               value={form.reporterContact}
               onChange={handleChange}
               placeholder="+243... or email"
-              className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-300"
+              className="w-full border border-gray-200 dark:border-gray-800 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 bg-white dark:bg-[#1E1F30] text-brand-dark dark:text-white placeholder-gray-400"
             />
           </div>
         </div>

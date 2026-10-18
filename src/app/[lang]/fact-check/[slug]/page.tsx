@@ -73,7 +73,7 @@ export default async function FactCheckDetail({
         {/* Back link */}
         <Link
           href={`/${lang}`}
-          className="inline-flex items-center gap-1.5 text-sm text-brand-muted hover:text-red-600 mb-6 transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm text-brand-muted dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 mb-6 transition-colors"
         >
           <ChevronLeft className="w-4 h-4" />
           {t.detail.backToFeed}
@@ -82,7 +82,7 @@ export default async function FactCheckDetail({
         {/* Category + Verdict */}
         <div className="flex items-center flex-wrap gap-2 mb-4">
           {fc.category && (
-            <span className="text-xs font-semibold text-red-600 uppercase tracking-wide border border-red-200 px-2.5 py-1 rounded-full">
+            <span className="text-xs font-semibold text-red-600 dark:text-red-400 uppercase tracking-wide border border-red-200 dark:border-red-900/50 px-2.5 py-1 rounded-full">
               {fc.category.name}
             </span>
           )}
@@ -90,16 +90,16 @@ export default async function FactCheckDetail({
         </div>
 
         {/* Title */}
-        <h1 className="text-2xl md:text-3xl font-black text-brand-dark leading-snug mb-4">
+        <h1 className="text-2xl md:text-3xl font-black text-brand-dark dark:text-white leading-snug mb-4">
           {fc.title}
         </h1>
 
         {/* Meta */}
-        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6 pb-6 border-b border-gray-100">
+        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-6 pb-6 border-b border-gray-100 dark:border-gray-800">
           {fc.author && (
             <span className="flex items-center gap-1.5">
               <User className="w-4 h-4" />
-              <strong className="text-gray-700">{fc.author.name}</strong>
+              <strong className="text-gray-700 dark:text-gray-200">{fc.author.name}</strong>
               <span className="text-xs text-gray-400">— {fc.author.role}</span>
             </span>
           )}
@@ -114,7 +114,7 @@ export default async function FactCheckDetail({
           {fc.verificationMethod && (
             <span className="flex items-center gap-1.5">
               <BookOpen className="w-4 h-4" />
-              <span className="text-xs bg-gray-100 px-2 py-0.5 rounded font-mono">
+              <span className="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded font-mono">
                 {fc.verificationMethod.replace("_", " ")}
               </span>
             </span>
@@ -189,8 +189,8 @@ export default async function FactCheckDetail({
 
         {/* Sources */}
         {fc.sources?.length > 0 && (
-          <section className="mb-8 bg-gray-50 rounded-xl p-5 border border-gray-100">
-            <h3 className="text-sm font-bold text-brand-dark uppercase tracking-wide mb-3">
+          <section className="mb-8 bg-gray-50 dark:bg-[#161726] rounded-xl p-5 border border-gray-100 dark:border-gray-800">
+            <h3 className="text-sm font-bold text-brand-dark dark:text-white uppercase tracking-wide mb-3">
               {t.detail.sources}
             </h3>
             <ul className="space-y-2">
@@ -201,7 +201,7 @@ export default async function FactCheckDetail({
                     href={src.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-red-600 hover:underline leading-snug"
+                    className="text-red-600 dark:text-red-400 hover:underline leading-snug"
                   >
                     {src.title}
                   </a>
@@ -212,8 +212,8 @@ export default async function FactCheckDetail({
         )}
 
         {/* Share */}
-        <section className="flex flex-wrap gap-3 mb-12 pb-8 border-b border-gray-100">
-          <div className="text-sm font-semibold text-gray-600 flex items-center gap-2">
+        <section className="flex flex-wrap gap-3 mb-12 pb-8 border-b border-gray-100 dark:border-gray-800">
+          <div className="text-sm font-semibold text-gray-600 dark:text-gray-400 flex items-center gap-2">
             <Share2 className="w-4 h-4" /> {t.detail.share}:
           </div>
           <a
@@ -229,18 +229,18 @@ export default async function FactCheckDetail({
         {/* Related */}
         {related.length > 0 && (
           <section>
-            <h3 className="text-lg font-bold text-brand-dark mb-4">{t.detail.relatedChecks}</h3>
+            <h3 className="text-lg font-bold text-brand-dark dark:text-white mb-4">{t.detail.relatedChecks}</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {related.map((rel) => (
                 <Link
                   key={rel.slug}
                   href={`/${lang}/fact-check/${rel.slug}`}
-                  className="group block bg-white rounded-xl border border-gray-100 p-4 hover:shadow-md transition-all"
+                  className="group block bg-white dark:bg-[#161726] rounded-xl border border-gray-100 dark:border-gray-800 p-4 hover:shadow-md transition-all"
                 >
                   <div className="mb-2">
                     {rel.verdict && <VerdictBadge verdict={rel.verdict} size="sm" />}
                   </div>
-                  <h4 className="text-sm font-semibold text-brand-dark group-hover:text-red-600 transition-colors line-clamp-3">
+                  <h4 className="text-sm font-semibold text-brand-dark dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors line-clamp-3">
                     {rel.title}
                   </h4>
                 </Link>

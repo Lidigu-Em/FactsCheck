@@ -72,7 +72,7 @@ export default function FeedFilters({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t.feed.search}
-            className="w-full pl-9 pr-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-300 bg-white"
+            className="w-full pl-9 pr-4 py-2.5 border border-gray-200 dark:border-gray-800 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-red-400 bg-white dark:bg-[#161726] text-brand-dark dark:text-white placeholder-gray-400"
           />
         </div>
         <div className="flex gap-2 flex-wrap sm:flex-nowrap">
@@ -87,9 +87,9 @@ export default function FeedFilters({
                 className={`px-3 py-2 rounded-xl text-xs font-semibold border transition-all whitespace-nowrap ${
                   active
                     ? "text-white border-transparent shadow-sm"
-                    : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+                    : "bg-white dark:bg-[#161726] text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-800 hover:border-gray-400 dark:hover:border-gray-600"
                 }`}
-                style={active && vInfo ? { backgroundColor: vInfo.colorCode, borderColor: vInfo.colorCode } : active ? { backgroundColor: "#1A1A2E" } : {}}
+                style={active && vInfo ? { backgroundColor: vInfo.colorCode, borderColor: vInfo.colorCode } : active ? { backgroundColor: "#DC2626" } : {}}
               >
                 {label}
               </button>
