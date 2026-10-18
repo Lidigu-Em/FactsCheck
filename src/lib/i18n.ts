@@ -20,12 +20,14 @@ const translations = {
       sources: "Verified Sources",
     },
     feed: {
-      title: "Fact Checks",
+      title: "Fact Check",
+      allTitle: "Fact Checks",
       filter: "Filter by Rating",
       all: "All",
       search: "Search fact checks...",
       noResults: "No fact checks found for your search.",
       featured: "Featured Investigation",
+      viewAll: "View All Fact Checks",
     },
     hub: {
       reportButton: "Submit a Rumor",
@@ -138,11 +140,13 @@ const translations = {
     },
     feed: {
       title: "Ukaguzi wa Habari",
+      allTitle: "Ukaguzi wa Habari Zote",
       filter: "Chuja kwa Uamuzi",
       all: "Yote",
       search: "Tafuta ukaguzi wa habari...",
       noResults: "Hakuna ukaguzi wa habari uliooana na utafutaji wako.",
       featured: "Uchunguzi Maalum",
+      viewAll: "Tazama Ukaguzi Wote",
     },
     hub: {
       reportButton: "Tuma Uvumi",

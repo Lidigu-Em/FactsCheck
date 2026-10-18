@@ -58,8 +58,8 @@ export default function Footer({ lang, site }: FooterProps) {
               ) : (
                 <>
                   <li>
-                    <Link href={`/${lang}`} className="hover:text-white transition-colors">
-                      {t.nav.mpoxfacts}
+                    <Link href={`/${lang}/fact-checks`} className="hover:text-white transition-colors">
+                      {t.nav.factchecks}
                     </Link>
                   </li>
                   <li>

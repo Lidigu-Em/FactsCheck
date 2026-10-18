@@ -288,7 +288,7 @@ export async function getMpoxHubPage(locale: Locale): Promise<MpoxHubPage> {
     alertSummary: loc.alertSummary,
     guidelines: loc.guidelines,
     rumorReportPrompt: loc.rumorReportPrompt,
-    feedTitle: loc.feedTitle || (locale === "sw" ? "Ukaguzi wa Habari" : "Fact Checks"),
+    feedTitle: loc.feedTitle || (locale === "sw" ? "Ukaguzi wa Habari" : "Fact Check"),
     featuredBadgeText: loc.featuredBadgeText || (locale === "sw" ? "UCHUNGUZI MAALUM" : "FEATURED INVESTIGATION"),
     featuredTitleOverride: loc.featuredTitleOverride || undefined,
     featuredSummaryOverride: loc.featuredSummaryOverride || undefined,

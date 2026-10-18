@@ -24,7 +24,7 @@ export default function Navbar({ lang, siteName, tagline, logo, logoAlt }: Navba
   const altPath = pathname.replace(`/${lang}`, `/${otherLang}`);
 
   const navLinks = [
-    { href: `/${lang}`, label: t.nav.mpoxfacts },
+    { href: `/${lang}/fact-checks`, label: t.nav.factchecks },
     { href: `/${lang}/about`, label: t.nav.about },
   ];
 
