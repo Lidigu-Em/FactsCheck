@@ -66,7 +66,7 @@ const translations = {
     },
     footer: {
       ifcn: "Certified Member of the IFCN Code of Principles",
-      about: "About Kenya Check",
+      about: "About Us",
       methodology: "Our Methodology",
       corrections: "Correction Policy",
     },
@@ -77,7 +77,7 @@ const translations = {
       unproven: "Unproven",
     },
     about: {
-      title: "About Kenya Check",
+      title: "About Us",
       intro: "We are a digital-first platform dedicated to hunting down rumors, unmasking disinformation, and bringing truthful journalism back to the forefront.",
       ifcnBadge: "IFCN Certified Fact-Checker",
       mission: "Mission",
@@ -185,7 +185,7 @@ const translations = {
     },
     footer: {
       ifcn: "Mwanachama Aliyeidhinishwa wa Kanuni za IFCN",
-      about: "Kuhusu Kenya Check",
+      about: "Kuhusu Sisi",
       methodology: "Mbinu Zetu",
       corrections: "Sera ya Masahihisho",
     },
@@ -196,7 +196,7 @@ const translations = {
       unproven: "Haijathibitishwa",
     },
     about: {
-      title: "Kuhusu Kenya Check",
+      title: "Kuhusu Sisi",
       intro: "Sisi ni jukwaa la kwanza la kidijitali lililojitolea kusaka uvumi, kufichua upotoshaji wa taarifa, na kurejesha uandishi wa habari wa ukweli na uaminifu mbele ya jamii.",
       ifcnBadge: "Mkaguzi wa Habari Aliyeidhinishwa na IFCN",
       mission: "Dhamira Yetu (Mission)",

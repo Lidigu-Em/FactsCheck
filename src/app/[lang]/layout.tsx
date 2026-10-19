@@ -34,7 +34,9 @@ export default async function LocaleLayout({
   return (
     <div className="min-h-screen flex flex-col justify-between">
       <div>
-        <EmergencyBanner text={site.emergencyBannerText} />
+        {site.emergencyBannerText ? (
+          <EmergencyBanner text={site.emergencyBannerText} />
+        ) : null}
         <Navbar
           lang={lang}
           siteName={site.siteName}
