@@ -138,7 +138,7 @@ export default function ReportPage() {
               name="reporterContact"
               value={form.reporterContact}
               onChange={handleChange}
-              placeholder="+243... or email"
+              placeholder="+254... or email"
               className="w-full border border-gray-200 dark:border-gray-800 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 bg-white dark:bg-[#1E1F30] text-brand-dark dark:text-white placeholder-gray-400"
             />
           </div>

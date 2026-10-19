@@ -33,12 +33,7 @@ export default async function HomePage({ params }: { params: { lang: Locale } })
     <div>
       {/* ── 1. Fact Check (First section after Navbar) ───────────────── */}
       <section className="max-w-6xl mx-auto px-4 py-10 md:py-12">
-        <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-200 dark:border-gray-800">
-          <div>
-            <h1 className="text-3xl md:text-4xl font-black text-brand-dark dark:text-white tracking-tight">
-              {hub.feedTitle || t.feed.title}
-            </h1>
-          </div>
+        <div className="flex items-center justify-end mb-6">
           <Link
             href={`/${lang}/fact-checks`}
             className="inline-flex items-center gap-1.5 text-sm font-bold text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors"

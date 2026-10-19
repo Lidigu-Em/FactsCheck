@@ -4,8 +4,8 @@ import { useTranslations } from "@/lib/i18n";
 import FeedFilters from "@/components/fact-check/FeedFilters";
 
 export const metadata = {
-  title: "Fact Checks — Kenya Check",
-  description: "Browse all verified fact checks, rumor investigations, and claim debunks by Kenya Check.",
+  title: "Stories — Kenya Check",
+  description: "Browse all verified stories, investigations, and claim debunks by Kenya Check.",
 };
 
 export default async function FactChecksPage({ params }: { params: { lang: Locale } }) {
@@ -26,10 +26,10 @@ export default async function FactChecksPage({ params }: { params: { lang: Local
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
       <div className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-black text-brand-dark mb-2">
-          {t.feed.allTitle}
+        <h1 className="text-3xl md:text-4xl font-black text-brand-dark dark:text-white mb-2">
+          {lang === "sw" ? "Hadithi" : "Stories"}
         </h1>
-        <p className="text-gray-600 text-sm md:text-base">
+        <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
           {lang === "sw"
             ? "Vinjari ukaguzi wote wa taarifa, uchunguzi wa uvumi na ufafanuzi wa ukweli."
             : "Explore all investigations, claims verified, and debunks published by our verification desk."}

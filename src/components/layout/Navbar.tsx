@@ -38,7 +38,7 @@ export default function Navbar({ lang, siteName, tagline, logo, logoAlt }: Navba
             <img
               src={logo}
               alt={logoAlt || siteName || "Logo"}
-              className="h-9 w-auto max-w-[140px] object-contain rounded"
+              className="h-12 w-auto max-w-[180px] object-contain rounded"
             />
           ) : (
             <span className="text-red-400 font-black text-2xl tracking-tight">✓</span>

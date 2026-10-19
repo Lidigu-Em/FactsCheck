@@ -7,7 +7,7 @@ const translations = {
   en: {
     nav: {
       mpoxfacts: "EbolaFacts",
-      factchecks: "Fact Checks",
+      factchecks: "Stories",
       about: "About",
       report: "Submit a Claim",
     },
@@ -21,13 +21,13 @@ const translations = {
     },
     feed: {
       title: "Fact Check",
-      allTitle: "Fact Checks",
+      allTitle: "Stories",
       filter: "Filter by Rating",
       all: "All",
-      search: "Search fact checks...",
-      noResults: "No fact checks found for your search.",
+      search: "Search stories...",
+      noResults: "No stories found for your search.",
       featured: "Featured Investigation",
-      viewAll: "View All Fact Checks",
+      viewAll: "View All Stories",
     },
     hub: {
       reportButton: "Submit a Claim",
@@ -126,7 +126,7 @@ const translations = {
   sw: {
     nav: {
       mpoxfacts: "Ukweli Kuhusu Ebola",
-      factchecks: "Ukaguzi wa Habari",
+      factchecks: "Hadithi",
       about: "Kuhusu Sisi",
       report: "Tuma Madai",
     },
@@ -139,14 +139,14 @@ const translations = {
       sources: "Vyanzo Vilivyothibitishwa",
     },
     feed: {
-      title: "Ukaguzi wa Habari",
-      allTitle: "Ukaguzi wa Habari Zote",
+      title: "Hadithi",
+      allTitle: "Hadithi",
       filter: "Chuja kwa Uamuzi",
       all: "Yote",
-      search: "Tafuta ukaguzi wa habari...",
-      noResults: "Hakuna ukaguzi wa habari uliooana na utafutaji wako.",
+      search: "Tafuta hadithi...",
+      noResults: "Hakuna hadithi iliyooana na utafutaji wako.",
       featured: "Uchunguzi Maalum",
-      viewAll: "Tazama Ukaguzi Wote",
+      viewAll: "Tazama Hadithi Zote",
     },
     hub: {
       reportButton: "Tuma Madai",
