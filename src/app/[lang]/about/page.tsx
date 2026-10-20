@@ -165,6 +165,18 @@ const defaultPrinciplesSw = [
   },
 ];
 
+const defaultCorrectionPolicyEn = `
+- **Promptness**: Errors are addressed and corrected as soon as they are discovered or verified.
+- **Transparency**: Corrections are clearly marked, dated, and accompanied by an explanation of what was wrong and what the accurate fact is.
+- **Prominence**: The fix appears on the same platform, page, or social media channel as the original error (often pinned or placed at the top of the affected article).
+`.trim();
+
+const defaultCorrectionPolicySw = `
+- **Kasi na Uharaka (Promptness)**: Makosa yanarekebishwa na kusahihishwa punde tu yanapogunduliwa au kuthibitishwa.
+- **Uwazi (Transparency)**: Masahihisho huwekwa wazi, yakionyesha tarehe, na yakiambatana na maelezo ya kile kilichokuwa na hitilafu na ukweli ulivyo.
+- **Umuhimu na Uonekano (Prominence)**: Sahihisho huwekwa kwenye jukwaa, ukurasa, au mtandao wa kijamii ule ule ambapo kosa la awali lilitokea (mara nyingi likiwa limebandikwa au kuwekwa juu ya makala husika).
+`.trim();
+
 export default async function AboutPage({ params }: { params: { lang: Locale } }) {
   const { lang } = params;
   const t = useTranslations(lang);
@@ -174,6 +186,7 @@ export default async function AboutPage({ params }: { params: { lang: Locale } }
   ]);
 
   const principles = lang === "sw" ? defaultPrinciplesSw : defaultPrinciplesEn;
+  const correctionPolicyContent = about.correctionPolicy || (lang === "sw" ? defaultCorrectionPolicySw : defaultCorrectionPolicyEn);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
@@ -292,16 +305,16 @@ export default async function AboutPage({ params }: { params: { lang: Locale } }
       </section>
 
       {/* Correction Policy */}
-      {about.correctionPolicy && (
+      {correctionPolicyContent ? (
         <section id="corrections" className="mb-12 bg-white dark:bg-[#161726] rounded-2xl p-6 md:p-8 border border-gray-100 dark:border-gray-800 shadow-sm scroll-mt-24">
           <h2 className="text-2xl font-black text-brand-dark dark:text-white mb-4 border-l-4 border-red-600 pl-4">
             {t.about.corrections}
           </h2>
           <div className="article-prose text-gray-700 dark:text-gray-300 leading-relaxed">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{about.correctionPolicy}</ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{correctionPolicyContent}</ReactMarkdown>
           </div>
         </section>
-      )}
+      ) : null}
 
       {/* Team Summary */}
       {about.teamSummary && (
