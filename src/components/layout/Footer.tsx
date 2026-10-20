@@ -73,7 +73,7 @@ export default function Footer({ lang, site }: FooterProps) {
                     </Link>
                   </li>
                   <li>
-                    <Link href={`/${lang}/about`} className="hover:text-white transition-colors">
+                    <Link href={`/${lang}/about#corrections`} className="hover:text-white transition-colors">
                       {t.footer.corrections}
                     </Link>
                   </li>

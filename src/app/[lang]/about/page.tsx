@@ -293,7 +293,7 @@ export default async function AboutPage({ params }: { params: { lang: Locale } }
 
       {/* Correction Policy */}
       {about.correctionPolicy && (
-        <section className="mb-12 bg-white dark:bg-[#161726] rounded-2xl p-6 md:p-8 border border-gray-100 dark:border-gray-800 shadow-sm">
+        <section id="corrections" className="mb-12 bg-white dark:bg-[#161726] rounded-2xl p-6 md:p-8 border border-gray-100 dark:border-gray-800 shadow-sm scroll-mt-24">
           <h2 className="text-2xl font-black text-brand-dark dark:text-white mb-4 border-l-4 border-red-600 pl-4">
             {t.about.corrections}
           </h2>
