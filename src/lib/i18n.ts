@@ -8,7 +8,7 @@ const translations = {
     nav: {
       mpoxfacts: "EbolaFacts",
       factchecks: "Stories",
-      about: "About",
+      about: "About Us",
       report: "Submit a Claim",
     },
     factCard: {
