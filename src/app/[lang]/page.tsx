@@ -91,10 +91,6 @@ export default async function HomePage({ params }: { params: { lang: Locale } })
       {/* ── 2. Hero & Health Information (Below Fact Checks) ─────────── */}
       <section className="bg-brand-dark text-white py-12 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-red-600/20 border border-red-500/40 text-red-300 text-xs font-semibold px-4 py-1.5 rounded-full mb-5 uppercase tracking-widest">
-            <AlertTriangle className="w-3.5 h-3.5" />
-            EbolaFacts
-          </div>
           <h2 className="text-2xl md:text-4xl font-black leading-tight mb-4">{hub.heroTitle}</h2>
           <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8">
             {hub.heroSubtitle}

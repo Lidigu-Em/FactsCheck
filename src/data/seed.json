@@ -371,7 +371,7 @@
     }
   ],
   "siteSetting": {
-    "emergencyPhone": "+243 81 000 0000",
+    "emergencyPhone": "",
     "emergencyWhatsApp": "+243 82 222 2222",
     "socialLinks": {
       "facebook": "https://facebook.com/congocheck",

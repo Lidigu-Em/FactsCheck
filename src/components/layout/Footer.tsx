@@ -111,10 +111,6 @@ export default function Footer({ lang, site }: FooterProps) {
                 </a>
               )}
             </div>
-            <div className="text-xs text-gray-500 leading-relaxed">
-              <div className="font-semibold text-gray-400 mb-1">Emergency Hotline / Simu ya Dharura</div>
-              <div className="font-mono">{site.emergencyPhone}</div>
-            </div>
           </div>
         </div>
 
