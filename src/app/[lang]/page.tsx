@@ -105,50 +105,54 @@ export default async function HomePage({ params }: { params: { lang: Locale } })
         </div>
       </section>
 
-      {/* ── 3. Health Alert Card ─────────────────────────────────────── */}
-      <section className="bg-amber-50 dark:bg-[#14120b] border-b border-amber-200 dark:border-amber-900/40">
-        <div className="max-w-5xl mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row gap-6">
-            <div className="flex-1">
-              <span className="inline-flex items-center gap-1.5 bg-amber-500 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
-                <AlertTriangle className="w-3 h-3" />
-                {hub.alertBadgeText}
-              </span>
-              <h3 className="text-xl font-bold text-amber-900 dark:text-amber-300 mb-2">{hub.alertHeadline}</h3>
-              <p className="text-amber-800 dark:text-amber-200/80 text-sm leading-relaxed">{hub.alertSummary}</p>
-            </div>
-            <div className="md:w-72 grid grid-cols-1 gap-3">
-              {hub.guidelines.map((g, i) => {
-                const Icon = iconMap[g.icon] ?? Shield;
-                return (
-                  <div key={i} className="flex items-start gap-3 bg-white dark:bg-[#1a1811] border border-amber-200 dark:border-amber-900/40 rounded-xl p-3 shadow-sm">
-                    <div className="bg-amber-100 dark:bg-amber-900/40 rounded-lg p-2 shrink-0">
-                      <Icon className="w-4 h-4 text-amber-700 dark:text-amber-300" />
+      {/* ── 3. Health Alert Card (Hidden for now) ────────────────────── */}
+      {false && (
+        <section className="bg-amber-50 dark:bg-[#14120b] border-b border-amber-200 dark:border-amber-900/40">
+          <div className="max-w-5xl mx-auto px-4 py-8">
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="flex-1">
+                <span className="inline-flex items-center gap-1.5 bg-amber-500 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
+                  <AlertTriangle className="w-3 h-3" />
+                  {hub.alertBadgeText}
+                </span>
+                <h3 className="text-xl font-bold text-amber-900 dark:text-amber-300 mb-2">{hub.alertHeadline}</h3>
+                <p className="text-amber-800 dark:text-amber-200/80 text-sm leading-relaxed">{hub.alertSummary}</p>
+              </div>
+              <div className="md:w-72 grid grid-cols-1 gap-3">
+                {hub.guidelines.map((g, i) => {
+                  const Icon = iconMap[g.icon] ?? Shield;
+                  return (
+                    <div key={i} className="flex items-start gap-3 bg-white dark:bg-[#1a1811] border border-amber-200 dark:border-amber-900/40 rounded-xl p-3 shadow-sm">
+                      <div className="bg-amber-100 dark:bg-amber-900/40 rounded-lg p-2 shrink-0">
+                        <Icon className="w-4 h-4 text-amber-700 dark:text-amber-300" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-amber-900 dark:text-amber-200 mb-0.5">{g.title}</div>
+                        <div className="text-xs text-amber-700 dark:text-amber-300/70 leading-relaxed">{g.desc}</div>
+                      </div>
                     </div>
-                    <div>
-                      <div className="text-xs font-bold text-amber-900 dark:text-amber-200 mb-0.5">{g.title}</div>
-                      <div className="text-xs text-amber-700 dark:text-amber-300/70 leading-relaxed">{g.desc}</div>
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* ── 4. Rumor report prompt ───────────────────────────────────── */}
-      <section className="bg-gradient-to-r from-red-600 to-red-700 text-white py-5 px-4">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="font-medium text-sm text-red-100 text-center sm:text-left">{hub.rumorReportPrompt}</p>
-          <a
-            href={`/${lang}/report`}
-            className="inline-flex items-center gap-2 bg-white text-red-600 font-bold text-sm px-5 py-2.5 rounded-xl whitespace-nowrap hover:bg-red-50 transition-colors shrink-0"
-          >
-            {t.hub.reportButton} <ArrowRight className="w-4 h-4" />
-          </a>
-        </div>
-      </section>
+      {/* ── 4. Rumor report prompt (Hidden for now) ──────────────────── */}
+      {false && (
+        <section className="bg-gradient-to-r from-red-600 to-red-700 text-white py-5 px-4">
+          <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="font-medium text-sm text-red-100 text-center sm:text-left">{hub.rumorReportPrompt}</p>
+            <a
+              href={`/${lang}/report`}
+              className="inline-flex items-center gap-2 bg-white text-red-600 font-bold text-sm px-5 py-2.5 rounded-xl whitespace-nowrap hover:bg-red-50 transition-colors shrink-0"
+            >
+              {t.hub.reportButton} <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
