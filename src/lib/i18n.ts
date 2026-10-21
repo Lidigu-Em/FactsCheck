@@ -48,13 +48,13 @@ const translations = {
     },
     report: {
       title: "Submit a Claim — Tuma Madai",
-      subtitle: "Spotted dangerous health misinformation? Send us the claim for investigation.",
+      subtitle: "",
       fields: {
         claim: "What is the claim?",
         claimPlaceholder: "Describe the rumor or paste the message here...",
         platform: "Where did you see it?",
         url: "Link to post or video (optional)",
-        location: "Your location (optional, city/region)",
+        location: "Your County (Kenya)",
         contact: "Your contact info (optional, for follow-up)",
       },
       submit: "Submit for Investigation",
@@ -167,13 +167,13 @@ const translations = {
     },
     report: {
       title: "Tuma Madai — Submit a Claim",
-      subtitle: "Umesikia taarifa ya uongo au hatari kuhusu afya? Tuma kwa timu yetu ya ukaguzi.",
+      subtitle: "",
       fields: {
         claim: "Ni madai gani?",
         claimPlaceholder: "Elezea uvumi au bandika ujumbe hapa...",
         platform: "Umeona wapi?",
         url: "Kiungo cha chapisho au video (hiari)",
-        location: "Mahali ulipo (hiari, mji/mkoa)",
+        location: "Kaunti Yako (Kenya)",
         contact: "Mawasiliano yako (hiari, kwa majibu)",
       },
       submit: "Tuma kwa Uchunguzi",

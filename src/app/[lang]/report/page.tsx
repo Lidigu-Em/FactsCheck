@@ -9,6 +9,17 @@ const PLATFORMS = [
   "WHATSAPP", "FACEBOOK", "TIKTOK", "X_TWITTER", "COMMUNITY_RADIO", "WORD_OF_MOUTH",
 ] as const;
 
+const KENYAN_COUNTIES = [
+  "Baringo", "Bomet", "Bungoma", "Busia", "Elgeyo Marakwet", "Embu", "Garissa",
+  "Homa Bay", "Isiolo", "Kajiado", "Kakamega", "Kericho", "Kiambu", "Kilifi",
+  "Kirinyaga", "Kisii", "Kisumu", "Kitui", "Kwale", "Laikipia", "Lamu",
+  "Machakos", "Makueni", "Mandera", "Marsabit", "Meru", "Migori", "Mombasa",
+  "Murang'a", "Nairobi", "Nakuru", "Nandi", "Narok", "Nyamira", "Nyandarua",
+  "Nyeri", "Samburu", "Siaya", "Taita Taveta", "Tana River", "Tharaka Nithi",
+  "Trans Nzoia", "Turkana", "Uasin Gishu", "Vihiga", "Wajir", "West Pokot",
+  "Other / Outside Kenya"
+] as const;
+
 export default function ReportPage() {
   const { lang } = useParams() as { lang: Locale };
   const t = useTranslations(lang);
@@ -57,8 +68,7 @@ export default function ReportPage() {
         <div className="w-14 h-14 rounded-2xl bg-red-600 flex items-center justify-center mx-auto mb-4 shadow-lg shadow-red-600/20">
           <MessageCircle className="w-7 h-7 text-white" />
         </div>
-        <h1 className="text-3xl font-black text-brand-dark dark:text-white mb-2">{t.report.title}</h1>
-        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{t.report.subtitle}</p>
+        <h1 className="text-3xl font-black text-brand-dark dark:text-white">{t.report.title}</h1>
       </div>
 
       <form onSubmit={handleSubmit} className="bg-white dark:bg-[#161726] rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 space-y-5">
@@ -122,13 +132,21 @@ export default function ReportPage() {
             <label className="block text-sm font-semibold text-brand-dark dark:text-white mb-1.5">
               {t.report.fields.location}
             </label>
-            <input
+            <select
               name="location"
               value={form.location}
               onChange={handleChange}
-              placeholder="Goma, Lubumbashi..."
-              className="w-full border border-gray-200 dark:border-gray-800 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 bg-white dark:bg-[#1E1F30] text-brand-dark dark:text-white placeholder-gray-400"
-            />
+              className="w-full border border-gray-200 dark:border-gray-800 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-red-400 bg-white dark:bg-[#1E1F30] text-brand-dark dark:text-white"
+            >
+              <option value="">
+                {lang === "sw" ? "-- Chagua Kaunti (Hiari) --" : "-- Select County (Optional) --"}
+              </option>
+              {KENYAN_COUNTIES.map((county) => (
+                <option key={county} value={county} className="bg-white dark:bg-[#161726] text-brand-dark dark:text-white">
+                  {county}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
             <label className="block text-sm font-semibold text-brand-dark dark:text-white mb-1.5">
