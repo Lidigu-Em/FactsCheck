@@ -32,29 +32,27 @@ export default function Navbar({ lang, siteName, tagline, logo, logoAlt }: Navba
     <header className="bg-black/95 dark:bg-black/95 backdrop-blur-md text-white sticky top-0 z-40 shadow-xl border-b border-gray-800">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between gap-6 h-20">
 
-        {/* ── Logo ─────────────────────────────────────────── */}
-        <Link href={`/${lang}`} className="flex items-center gap-3.5 shrink-0 py-2">
+        {/* ── Logo + Brand Text ─────────────────────────────── */}
+        <Link href={`/${lang}`} className="flex items-center gap-3 shrink-0 py-2">
           {logo ? (
             <img
               src={logo}
               alt={logoAlt || siteName || "Kenya Check Logo"}
-              className="h-12 sm:h-14 md:h-16 w-auto max-w-[260px] object-contain transition-transform hover:scale-[1.02]"
+              className="h-10 sm:h-12 md:h-14 w-auto max-w-[180px] object-contain transition-transform hover:scale-[1.02] rounded"
             />
           ) : (
-            <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-11 h-11 rounded-xl bg-red-600 text-white font-black text-2xl shadow-md">✓</span>
-              <div className="flex flex-col">
-                <span className="font-black text-xl sm:text-2xl leading-none text-white tracking-tight uppercase">
-                  {siteName || "KENYA CHECK"}
-                </span>
-                {tagline ? (
-                  <span className="text-[10px] text-red-400 font-bold uppercase tracking-widest mt-1">
-                    {tagline}
-                  </span>
-                ) : null}
-              </div>
-            </div>
+            <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-red-600 text-white font-black text-xl shadow-md">✓</span>
           )}
+          <div>
+            <div className="font-black text-lg sm:text-xl md:text-2xl leading-none text-white tracking-tight uppercase">
+              {siteName || "KENYA CHECK"}
+            </div>
+            {tagline ? (
+              <div className="text-[10px] sm:text-xs text-red-400 font-bold uppercase tracking-widest mt-1">
+                {tagline}
+              </div>
+            ) : null}
+          </div>
         </Link>
 
         {/* ── Desktop nav + actions (spaced like CANEX) ─────── */}
