@@ -282,6 +282,29 @@ function mapStrapiFactCheck(item: any): FactCheck {
   };
 }
 
+function getYoutubeThumbnail(url?: string): string | null {
+  if (!url) return null;
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes("youtube.com")) {
+      const v = u.searchParams.get("v");
+      if (v) return `https://img.youtube.com/vi/${v}/hqdefault.jpg`;
+      const pathParts = u.pathname.split("/");
+      const embedIdx = pathParts.indexOf("embed");
+      if (embedIdx !== -1 && pathParts[embedIdx + 1]) {
+        return `https://img.youtube.com/vi/${pathParts[embedIdx + 1]}/hqdefault.jpg`;
+      }
+    }
+    if (u.hostname === "youtu.be") {
+      const id = u.pathname.slice(1).split("?")[0];
+      if (id) return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+    }
+  } catch {
+    return null;
+  }
+  return null;
+}
+
 function mapStrapiVideo(item: any): FactCheck {
   const a = item.attributes || {};
   const authorInfo = a.author?.data?.attributes
@@ -300,7 +323,8 @@ function mapStrapiVideo(item: any): FactCheck {
   const rawDescription =
     a.description || a.videoDescription || a.claim || a.verdictSummary || "";
   const rawContent = a.content || a.videoContent || a.transcript || "";
-  const imageUrl =
+  const autoThumbnail = getYoutubeThumbnail(rawVideoUrl);
+  const uploadedUrl =
     a.coverImage?.data?.attributes?.url ||
     a.image?.data?.attributes?.url ||
     a.featuredImage?.data?.attributes?.url ||
@@ -310,7 +334,7 @@ function mapStrapiVideo(item: any): FactCheck {
     id: item.id,
     contentType: "video",
     slug: a.slug,
-    claimDate: a.claimDate || a.publishedAt || new Date().toISOString(),
+    claimDate: a.publishedAt || new Date().toISOString(),
     publishDate: a.publishedAt || new Date().toISOString(),
     verdictSlug: a.verdict?.data?.attributes?.slug || "unproven",
     categorySlug: "videos",
@@ -326,14 +350,15 @@ function mapStrapiVideo(item: any): FactCheck {
     viewsCount: typeof a.viewsCount === "number" ? a.viewsCount : 0,
     sharesCount: typeof a.sharesCount === "number" ? a.sharesCount : 0,
     image:
-      formatImageUrl(imageUrl) ||
+      autoThumbnail ||
+      formatImageUrl(uploadedUrl) ||
       "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=1200&auto=format&fit=crop&q=80",
     sources: a.sources ?? [],
     title: rawTitle,
-    claim: a.claim || rawTitle,
+    claim: rawDescription || rawTitle,
     claimant: a.claimant || "",
     verdictSummary: rawDescription,
-    imageCaption: a.imageCaption || rawTitle,
+    imageCaption: rawTitle,
     explanation: rawContent || rawDescription,
     verdict: a.verdict?.data?.attributes
       ? {
