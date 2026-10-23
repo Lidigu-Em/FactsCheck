@@ -283,7 +283,7 @@ function mapStrapiFactCheck(item: any): FactCheck {
 }
 
 function mapStrapiVideo(item: any): FactCheck {
-  const a = item.attributes;
+  const a = item.attributes || {};
   const authorInfo = a.author?.data?.attributes
     ? {
         id: String(a.author.data.id),
@@ -295,6 +295,17 @@ function mapStrapiVideo(item: any): FactCheck {
       }
     : undefined;
 
+  const rawVideoUrl = a.videoUrl || a.url || a.link || a.video_url || "";
+  const rawTitle = a.title || a.videoTitle || "Video Investigation";
+  const rawDescription =
+    a.description || a.videoDescription || a.claim || a.verdictSummary || "";
+  const rawContent = a.content || a.videoContent || a.transcript || "";
+  const imageUrl =
+    a.coverImage?.data?.attributes?.url ||
+    a.image?.data?.attributes?.url ||
+    a.featuredImage?.data?.attributes?.url ||
+    a.thumbnail?.data?.attributes?.url;
+
   return {
     id: item.id,
     contentType: "video",
@@ -304,26 +315,26 @@ function mapStrapiVideo(item: any): FactCheck {
     verdictSlug: a.verdict?.data?.attributes?.slug || "unproven",
     categorySlug: "videos",
     authorId: a.author?.data?.id ? String(a.author.data.id) : "",
-    verificationMethod: "VIDEO_INVESTIGATION",
+    verificationMethod: a.verificationMethod || "VIDEO_INVESTIGATION",
     isFeatured: Boolean(a.isFeatured),
-    videoUrl: a.videoUrl,
-    videoTitle: a.title,
-    videoDescription: a.description || a.claim || "",
-    videoContent: a.content || "",
+    videoUrl: rawVideoUrl,
+    videoTitle: rawTitle,
+    videoDescription: rawDescription,
+    videoContent: rawContent,
     videoAuthorId: a.author?.data?.id ? String(a.author.data.id) : undefined,
     isTrending: Boolean(a.isTrending),
     viewsCount: typeof a.viewsCount === "number" ? a.viewsCount : 0,
     sharesCount: typeof a.sharesCount === "number" ? a.sharesCount : 0,
     image:
-      formatImageUrl(a.coverImage?.data?.attributes?.url) ||
+      formatImageUrl(imageUrl) ||
       "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=1200&auto=format&fit=crop&q=80",
-    sources: [],
-    title: a.title || "",
-    claim: a.claim || a.title || "",
+    sources: a.sources ?? [],
+    title: rawTitle,
+    claim: a.claim || rawTitle,
     claimant: a.claimant || "",
-    verdictSummary: a.description || "",
-    imageCaption: a.title || "",
-    explanation: a.content || a.description || "",
+    verdictSummary: rawDescription,
+    imageCaption: a.imageCaption || rawTitle,
+    explanation: rawContent || rawDescription,
     verdict: a.verdict?.data?.attributes
       ? {
           slug: a.verdict.data.attributes.slug,
@@ -350,39 +361,53 @@ export async function getAllFactChecks(locale: Locale): Promise<FactCheck[]> {
     const [factChecksData, videosData]: [any, any] = await Promise.all([
       strapiGet(
         `fact-checks?populate=*&locale=${locale}&pagination[pageSize]=50&sort=publishedAt:desc`
-      ).catch(() => ({ data: [] })),
+      ).catch((err) => {
+        console.warn("Strapi fetch fact-checks failed:", err);
+        return { data: [] };
+      }),
       strapiGet(
         `videos?populate=*&locale=${locale}&pagination[pageSize]=50&sort=publishedAt:desc`
-      ).catch(() => ({ data: [] })),
+      ).catch((err) => {
+        console.warn(
+          "Strapi fetch videos failed (Make sure Public role has find/findOne enabled under Settings > Users & Permissions Plugin > Roles > Public > Video):",
+          err
+        );
+        return { data: [] };
+      }),
     ]);
 
-    const mappedFc = (factChecksData?.data || []).map(mapStrapiFactCheck);
-    const mappedVideos = (videosData?.data || []).map(mapStrapiVideo);
+    let mappedFc = (factChecksData?.data || []).map(mapStrapiFactCheck);
+    let mappedVideos = (videosData?.data || []).map(mapStrapiVideo);
+
+    // Independent fallback: If videos are not available in current locale (e.g. 'sw'), fallback to 'en'
+    if (mappedVideos.length === 0 && locale !== "en") {
+      try {
+        const enVideos: any = await strapiGet(
+          `videos?populate=*&locale=en&pagination[pageSize]=50&sort=publishedAt:desc`
+        ).catch(() => ({ data: [] }));
+        if (enVideos?.data?.length > 0) {
+          mappedVideos = enVideos.data.map(mapStrapiVideo);
+        }
+      } catch (err) {
+        console.warn("Strapi en fallback for videos failed:", err);
+      }
+    }
+
+    // Independent fallback: If fact-checks are not in current locale, fallback to 'en'
+    if (mappedFc.length === 0 && locale !== "en") {
+      try {
+        const enFc: any = await strapiGet(
+          `fact-checks?populate=*&locale=en&pagination[pageSize]=50&sort=publishedAt:desc`
+        ).catch(() => ({ data: [] }));
+        if (enFc?.data?.length > 0) {
+          mappedFc = enFc.data.map(mapStrapiFactCheck);
+        }
+      } catch (err) {
+        console.warn("Strapi en fallback for fact-checks failed:", err);
+      }
+    }
 
     if (mappedFc.length === 0 && mappedVideos.length === 0) {
-      if (locale !== "en") {
-        try {
-          const [enFc, enVideos]: [any, any] = await Promise.all([
-            strapiGet(
-              `fact-checks?populate=*&locale=en&pagination[pageSize]=50&sort=publishedAt:desc`
-            ).catch(() => ({ data: [] })),
-            strapiGet(
-              `videos?populate=*&locale=en&pagination[pageSize]=50&sort=publishedAt:desc`
-            ).catch(() => ({ data: [] })),
-          ]);
-          const combinedEn = [
-            ...(enFc?.data || []).map(mapStrapiFactCheck),
-            ...(enVideos?.data || []).map(mapStrapiVideo),
-          ];
-          if (combinedEn.length > 0) {
-            return combinedEn.sort(
-              (a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
-            );
-          }
-        } catch {
-          // ignore
-        }
-      }
       return seedFactChecks(locale);
     }
 
