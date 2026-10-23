@@ -40,6 +40,14 @@ export interface FactCheck {
   editorId?: string;
   verificationMethod: string;
   isFeatured: boolean;
+  videoUrl?: string;
+  videoTitle?: string;
+  videoDescription?: string;
+  videoContent?: string;
+  videoAuthorId?: string;
+  isTrending?: boolean;
+  viewsCount?: number;
+  sharesCount?: number;
   image: string;
   sources: SourceRef[];
   // localized
@@ -54,6 +62,7 @@ export interface FactCheck {
   category?: CategoryInfo;
   author?: AuthorInfo;
   editor?: AuthorInfo;
+  videoAuthor?: AuthorInfo;
 }
 
 export interface FooterLinkItem {

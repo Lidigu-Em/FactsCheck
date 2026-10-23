@@ -66,6 +66,11 @@ function seedFactChecks(locale: Locale): FactCheck[] {
     const category = categories.find((c) => c.slug === fc.categorySlug);
     const author = authors.find((a) => a.id === fc.authorId);
     const editor = authors.find((a) => a.id === fc.editorId);
+    const videoAuthor = fc.videoAuthorId
+      ? authors.find((a) => a.id === fc.videoAuthorId)
+      : fc.videoUrl
+      ? author
+      : undefined;
     return {
       slug: fc.slug,
       claimDate: fc.claimDate,
@@ -74,8 +79,17 @@ function seedFactChecks(locale: Locale): FactCheck[] {
       categorySlug: fc.categorySlug,
       authorId: fc.authorId,
       editorId: fc.editorId,
+      videoAuthorId: fc.videoAuthorId,
       verificationMethod: fc.verificationMethod,
       isFeatured: fc.isFeatured,
+      videoUrl: fc.videoUrl,
+      videoTitle: loc.videoTitle || (fc.videoUrl ? loc.title : undefined),
+      videoDescription:
+        loc.videoDescription || (fc.videoUrl ? loc.claim || loc.verdictSummary : undefined),
+      videoContent: loc.videoContent || (fc.videoUrl ? loc.explanation : undefined),
+      isTrending: fc.isTrending,
+      viewsCount: typeof fc.viewsCount === "number" ? fc.viewsCount : 0,
+      sharesCount: typeof fc.sharesCount === "number" ? fc.sharesCount : 0,
       image: fc.image,
       sources: fc.sources ?? [],
       title: loc.title,
@@ -88,6 +102,7 @@ function seedFactChecks(locale: Locale): FactCheck[] {
       category,
       author,
       editor,
+      videoAuthor,
     } as FactCheck;
   });
 }
@@ -123,6 +138,14 @@ function mapStrapiFactCheck(item: any): FactCheck {
     editorId: a.editor?.data?.id ? String(a.editor.data.id) : undefined,
     verificationMethod: a.verificationMethod || "PROTOCOL_3PFCP",
     isFeatured: Boolean(a.isFeatured),
+    videoUrl: a.videoUrl || undefined,
+    videoTitle: a.videoTitle || (a.videoUrl ? a.title : undefined),
+    videoDescription: a.videoDescription || (a.videoUrl ? a.claim || a.verdictSummary : undefined),
+    videoContent: a.videoContent || (a.videoUrl ? a.explanation : undefined),
+    videoAuthorId: a.videoAuthor?.data?.id ? String(a.videoAuthor.data.id) : undefined,
+    isTrending: Boolean(a.isTrending),
+    viewsCount: typeof a.viewsCount === "number" ? a.viewsCount : 0,
+    sharesCount: typeof a.sharesCount === "number" ? a.sharesCount : 0,
     image: formatImageUrl(a.featuredImage?.data?.attributes?.url),
     sources: a.sources ?? [],
     title: a.title || "",
@@ -165,6 +188,25 @@ function mapStrapiFactCheck(item: any): FactCheck {
           bio: a.editor.data.attributes.bio,
           organization: a.editor.data.attributes.organization,
           twitterHandle: a.editor.data.attributes.twitterHandle,
+        }
+      : undefined,
+    videoAuthor: a.videoAuthor?.data?.attributes
+      ? {
+          id: String(a.videoAuthor.data.id),
+          name: a.videoAuthor.data.attributes.name,
+          role: a.videoAuthor.data.attributes.role,
+          bio: a.videoAuthor.data.attributes.bio,
+          organization: a.videoAuthor.data.attributes.organization,
+          twitterHandle: a.videoAuthor.data.attributes.twitterHandle,
+        }
+      : a.author?.data?.attributes && a.videoUrl
+      ? {
+          id: String(a.author.data.id),
+          name: a.author.data.attributes.name,
+          role: a.author.data.attributes.role,
+          bio: a.author.data.attributes.bio,
+          organization: a.author.data.attributes.organization,
+          twitterHandle: a.author.data.attributes.twitterHandle,
         }
       : undefined,
   };

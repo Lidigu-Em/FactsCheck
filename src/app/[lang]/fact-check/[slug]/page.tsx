@@ -3,11 +3,41 @@ import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Calendar, User, ExternalLink, Share2, MessageCircle, ChevronLeft, BookOpen } from "lucide-react";
+import {
+  Calendar,
+  User,
+  ExternalLink,
+  ChevronLeft,
+  BookOpen,
+  Video,
+  Play,
+  Flame,
+  Eye,
+} from "lucide-react";
 import type { Locale } from "@/lib/types";
 import { getAllFactChecks, getFactCheck } from "@/lib/api";
 import { useTranslations } from "@/lib/i18n";
 import VerdictBadge from "@/components/ui/VerdictBadge";
+import ShareButtons from "@/components/fact-check/ShareButtons";
+
+function getEmbedUrl(url?: string): string | null {
+  if (!url) return null;
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes("youtube.com")) {
+      const v = u.searchParams.get("v");
+      if (v) return `https://www.youtube-nocookie.com/embed/${v}`;
+      if (u.pathname.startsWith("/embed/")) return url;
+    }
+    if (u.hostname === "youtu.be") {
+      const id = u.pathname.slice(1).split("?")[0];
+      if (id) return `https://www.youtube-nocookie.com/embed/${id}`;
+    }
+  } catch {
+    return null;
+  }
+  return null;
+}
 
 export async function generateStaticParams() {
   const locales: Locale[] = ["en", "sw"];
@@ -28,6 +58,13 @@ export default async function FactCheckDetail({
   const t = useTranslations(lang);
   const fc = await getFactCheck(slug, lang);
   if (!fc) notFound();
+
+  const embedUrl = getEmbedUrl(fc.videoUrl);
+  const isDirectVideo =
+    fc.videoUrl &&
+    (fc.videoUrl.endsWith(".mp4") ||
+      fc.videoUrl.endsWith(".webm") ||
+      fc.videoUrl.includes("/video/"));
 
   const allFcs = await getAllFactChecks(lang);
   const related = allFcs
@@ -79,7 +116,7 @@ export default async function FactCheckDetail({
           {t.detail.backToFeed}
         </Link>
 
-        {/* Category + Verdict */}
+        {/* Category + Verdict + Badges */}
         <div className="flex items-center flex-wrap gap-2 mb-4">
           {fc.category && (
             <span className="text-xs font-semibold text-red-600 dark:text-red-400 uppercase tracking-wide border border-red-200 dark:border-red-900/50 px-2.5 py-1 rounded-full">
@@ -87,6 +124,18 @@ export default async function FactCheckDetail({
             </span>
           )}
           {fc.verdict && <VerdictBadge verdict={fc.verdict} size="lg" />}
+          {fc.isTrending && (
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-800 px-2.5 py-1 rounded-full">
+              <Flame className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
+              <span>{t.feed.tabs?.trending ?? "Trending"}</span>
+            </span>
+          )}
+          {fc.videoUrl && (
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-950/40 border border-purple-300 dark:border-purple-800 px-2.5 py-1 rounded-full">
+              <Video className="w-3.5 h-3.5" />
+              <span>{t.feed.tabs?.videos ?? "Video"}</span>
+            </span>
+          )}
         </div>
 
         {/* Title */}
@@ -107,10 +156,21 @@ export default async function FactCheckDetail({
             <Calendar className="w-4 h-4" />
             <span suppressHydrationWarning>
               {new Date(fc.publishDate).toLocaleDateString(lang === "sw" ? "sw-TZ" : "en-GB", {
-                year: "numeric", month: "long", day: "numeric",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
               })}
             </span>
           </span>
+          {typeof fc.viewsCount === "number" && fc.viewsCount > 0 && (
+            <span className="flex items-center gap-1.5">
+              <Eye className="w-4 h-4 text-gray-400" />
+              <span>
+                <strong className="text-gray-700 dark:text-gray-200">{fc.viewsCount.toLocaleString()}</strong>{" "}
+                {t.feed.views}
+              </span>
+            </span>
+          )}
           {fc.verificationMethod && (
             <span className="flex items-center gap-1.5">
               <BookOpen className="w-4 h-4" />
@@ -121,8 +181,110 @@ export default async function FactCheckDetail({
           )}
         </div>
 
-        {/* Featured image */}
-        {fc.image && (
+        {/* Video Investigation Showcase (if videoUrl is present) */}
+        {fc.videoUrl && (
+          <div className="mb-8 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#161726] shadow-md">
+            <div className="p-3 bg-gray-50 dark:bg-[#1E1F30] border-b border-gray-200 dark:border-gray-800 flex items-center justify-between flex-wrap gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-purple-100 dark:bg-purple-950/50 text-purple-800 dark:text-purple-300 border border-purple-200 dark:border-purple-800">
+                <Video className="w-3.5 h-3.5" />
+                {t.feed.watchVideo}
+              </span>
+              {(fc.videoAuthor || fc.author) && (
+                <span className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
+                  <User className="w-3.5 h-3.5 text-purple-600" />
+                  <span>{t.feed.videoBy}:</span>
+                  <strong className="text-gray-800 dark:text-gray-200">
+                    {(fc.videoAuthor || fc.author)?.name}
+                  </strong>
+                </span>
+              )}
+            </div>
+
+            {embedUrl ? (
+              <div className="relative aspect-video bg-black">
+                <iframe
+                  src={embedUrl}
+                  title={fc.videoTitle || fc.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full border-0"
+                />
+              </div>
+            ) : isDirectVideo ? (
+              <div className="relative aspect-video bg-black">
+                <video src={fc.videoUrl} controls className="w-full h-full object-contain" />
+              </div>
+            ) : (
+              <div className="p-4">
+                <a
+                  href={fc.videoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-4 rounded-xl bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800 hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
+                >
+                  <span className="flex items-center gap-2 text-sm font-bold text-purple-700 dark:text-purple-300">
+                    <Play className="w-4 h-4 fill-purple-600" />
+                    {t.feed.watchVideo}
+                  </span>
+                  <ExternalLink className="w-4 h-4 text-purple-500" />
+                </a>
+              </div>
+            )}
+
+            {/* Video Metadata: Title, Description, Author Card & Content */}
+            <div className="p-5 md:p-6 space-y-4">
+              <div>
+                <h2 className="text-lg md:text-xl font-bold text-brand-dark dark:text-white leading-snug">
+                  {fc.videoTitle || fc.title}
+                </h2>
+                {(fc.videoDescription || fc.claim || fc.verdictSummary) && (
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-2 leading-relaxed">
+                    {fc.videoDescription || fc.claim || fc.verdictSummary}
+                  </p>
+                )}
+              </div>
+
+              {/* Video Author Details */}
+              {(fc.videoAuthor || fc.author) && (
+                <div className="flex items-center justify-between p-3 rounded-xl bg-gray-50 dark:bg-[#1E1F30] border border-gray-100 dark:border-gray-800 text-xs flex-wrap gap-2">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-full bg-purple-600/10 text-purple-600 flex items-center justify-center font-bold text-sm shrink-0">
+                      {(fc.videoAuthor || fc.author)?.name.charAt(0)}
+                    </div>
+                    <div>
+                      <div className="font-bold text-gray-800 dark:text-gray-200">
+                        {(fc.videoAuthor || fc.author)?.name}
+                      </div>
+                      <div className="text-gray-500 dark:text-gray-400">
+                        {(fc.videoAuthor || fc.author)?.role || "Video Fact-Checker"} ·{" "}
+                        {(fc.videoAuthor || fc.author)?.organization || "Kenya Check"}
+                      </div>
+                    </div>
+                  </div>
+                  <span className="text-[11px] font-semibold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/40 px-2 py-0.5 rounded">
+                    {t.feed.videoBy}
+                  </span>
+                </div>
+              )}
+
+              {/* Video Content / Transcript */}
+              {fc.videoContent && (
+                <div className="pt-3 border-t border-gray-100 dark:border-gray-800">
+                  <div className="text-xs font-bold text-purple-700 dark:text-purple-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                    <BookOpen className="w-3.5 h-3.5" />
+                    {t.feed.videoTranscript}
+                  </div>
+                  <div className="article-prose text-xs md:text-sm text-gray-600 dark:text-gray-300 bg-gray-50/50 dark:bg-[#12131F] p-4 rounded-xl border border-gray-100 dark:border-gray-800">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{fc.videoContent}</ReactMarkdown>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Featured image (if no videoUrl or if image is also provided) */}
+        {fc.image && !fc.videoUrl && (
           <figure className="mb-6 rounded-xl overflow-hidden shadow-md">
             <div className="relative h-64 md:h-80">
               <Image
@@ -211,20 +373,14 @@ export default async function FactCheckDetail({
           </section>
         )}
 
-        {/* Share */}
-        <section className="flex flex-wrap gap-3 mb-12 pb-8 border-b border-gray-100 dark:border-gray-800">
-          <div className="text-sm font-semibold text-gray-600 dark:text-gray-400 flex items-center gap-2">
-            <Share2 className="w-4 h-4" /> {t.detail.share}:
-          </div>
-          <a
-            href={`https://wa.me/?text=${encodeURIComponent(fc.title + " " + "https://example.com/" + lang + "/fact-check/" + slug)}`}
-            target="_blank"
-            rel="noopener"
-            className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors"
-          >
-            <MessageCircle className="w-4 h-4" /> {t.detail.whatsapp}
-          </a>
-        </section>
+        {/* Share & engagement */}
+        <ShareButtons
+          title={fc.title}
+          url={`https://kenyacheck.org/${lang}/fact-check/${slug}`}
+          lang={lang}
+          initialShares={fc.sharesCount || 0}
+          viewsCount={fc.viewsCount || 0}
+        />
 
         {/* Related */}
         {related.length > 0 && (

@@ -132,13 +132,18 @@
     {
       "slug": "bill-gates-predicted-mpox-simulation-nti",
       "claimDate": "2024-10-18",
-      "publishDate": "2024-10-22",
+      "publishDate": "2026-10-22",
       "verdictSlug": "false",
       "categorySlug": "mpoxfacts",
       "authorId": "fiston-mahamba",
       "editorId": "ruth-kutemba",
+      "videoAuthorId": "ruth-kutemba",
       "verificationMethod": "PROTOCOL_3PFCP",
       "isFeatured": true,
+      "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "isTrending": true,
+      "viewsCount": 14250,
+      "sharesCount": 1820,
       "image": "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=1200&auto=format&fit=crop&q=80",
       "sources": [
         {
@@ -157,6 +162,9 @@
       "locales": {
         "en": {
           "title": "Did Bill Gates Predict the Spread of Mpox? No, It Was an NTI Preparedness Simulation Exercise",
+          "videoTitle": "Video Fact-Check: Bill Gates & the 2021 NTI Pandemic Simulation",
+          "videoDescription": "Senior researcher Ruth Kutemba investigates the claims alleging Bill Gates orchestrated Mpox.",
+          "videoContent": "### Video Summary & Key Highlights\n\n- **00:00 - The Viral Claim:** Analysis of social media posts claiming a 2021 exercise was a blueprint.\n- **00:45 - The Munich Exercise:** Why the Nuclear Threat Initiative utilized monkeypox as a theoretical preparedness scenario.\n- **01:30 - Expert Insights:** Dr. Eugene Kabambi of WHO confirms these allegations are groundless disinformation.\n- **02:15 - Key Conclusion:** Preparedness simulation is standard biosecurity protocol, not foreknowledge.",
           "claim": "American billionaire Bill Gates predicted and planned the current Mpox outbreak in advance during 2022 to profit from vaccines.",
           "claimant": "Viral Facebook posts and TikTok video conspiracy claims",
           "verdictSummary": "FALSE. The circulating video is an excerpt from a tabletop pandemic crisis simulation organized by the Nuclear Threat Initiative (NTI) in March 2021 to test global bio-security response systems. Bill Gates did not orchestrate or predict the real outbreak.",
@@ -165,6 +173,9 @@
         },
         "sw": {
           "title": "Je, Bill Gates Alitabiri Kuenea kwa Mpox? Hapana, Lilikuwa Zoezi la Kujiandaa la Shirika la NTI",
+          "videoTitle": "Uchunguzi wa Video: Bill Gates na Zoezi la NTI Kuhusu Mpox",
+          "videoDescription": "Mtafiti Ruth Kutemba anachambua video ya zoezi la kisayansi lililotumiwa vibaya kupotosha umma.",
+          "videoContent": "### Muhtasari wa Video na Hoja Muhimu\n\n- **00:00 - Madai Yaliyosambaa:** Uchambuzi wa machapisho ya video kwenye mitandao ya kijamii.\n- **00:45 - Zoezi la Munich:** Kwa nini shirika la NTI lilichagua ndui ya nyani kama mfano wa kinadharia.\n- **01:30 - Ufafanuzi wa WHO:** Dkt. Eugene Kabambi akithibitisha kwamba hakuna mpango wowote wa siri.\n- **02:15 - Hitimisho:** Zoezi hilo lilikuwa la kawaida la kisayansi na si utabiri wa mlipuko halisi.",
           "claim": "Bilionea wa Marekani Bill Gates alitabiri na kupanga mapema kuenea kwa Mpox mnamo 2022 ili kupata faida ya kuuza chanjo.",
           "claimant": "Machapisho ya virusi kwenye Facebook na video za uzushi kwenye TikTok",
           "verdictSummary": "UONGO. Video inayosambazwa ni kipande kutoka kwa zoezi la uigaji wa kukabiliana na majanga ya kiafya lililoandaliwa na shirika la Nuclear Threat Initiative (NTI) mnamo Machi 2021. Bill Gates hakupanga wala kutabiri mlipuko halisi wa ugonjwa huo.",
@@ -176,13 +187,18 @@
     {
       "slug": "cassava-leaves-sugarcane-juice-cure-mpox",
       "claimDate": "2024-09-20",
-      "publishDate": "2024-09-24",
+      "publishDate": "2026-10-20",
       "verdictSlug": "false",
       "categorySlug": "mpoxfacts",
       "authorId": "john-mukengere",
       "editorId": "fiston-mahamba",
+      "videoAuthorId": "john-mukengere",
       "verificationMethod": "EXPERT_INTERVIEW",
       "isFeatured": true,
+      "videoUrl": "https://www.youtube.com/watch?v=ScMzIvxBSi4",
+      "isTrending": true,
+      "viewsCount": 9820,
+      "sharesCount": 2450,
       "image": "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&auto=format&fit=crop&q=80",
       "sources": [
         {
@@ -197,6 +213,9 @@
       "locales": {
         "en": {
           "title": "Cassava Leaves and Sugarcane Juice Mixture Does Not Cure or Prevent Mpox",
+          "videoTitle": "Video Report: Health Risks of Unproven Herbal Concoctions for Mpox",
+          "videoDescription": "Field fact-checker John Mukengere speaks with clinical pharmacists about dangerous homemade remedy claims.",
+          "videoContent": "### Field Investigation Video Breakdown\n\n- **Toxicity Warning:** Raw cassava foliage produces harmful cyanide precursors if not adequately processed.\n- **Danger of Delay:** Patients who avoid certified health facilities face increased danger of sepsis and eye lesions.\n- **Clinical Guidance:** Consult licensed health officers for accredited medical treatments.",
           "claim": "Drinking a boiled concoction of crushed cassava leaves combined with pure sugarcane juice completely cures Mpox within 48 hours.",
           "claimant": "Widely shared WhatsApp voice notes circulating in Goma, Bukavu, and Uvira",
           "verdictSummary": "FALSE. There is zero clinical or pharmacological evidence that cassava leaves and sugarcane juice can eliminate the Mpox virus. Medical authorities warn that relying on unproven remedies delays essential medical care and risks severe complications.",
@@ -205,6 +224,9 @@
         },
         "sw": {
           "title": "Mchanganyiko wa Majani ya Muhogo na Maji ya Miwa Si Dawa ya Kutibu Mpox",
+          "videoTitle": "Ripoti ya Video: Hatari za Dawa za Kienyeji Zisizothibitishwa za Mpox",
+          "videoDescription": "Mchunguzi John Mukengere azungumza na wafamasia wa kitabibu kuhusu madai ya uzushi ya dawa za nyumbani.",
+          "videoContent": "### Muhtasari wa Video ya Uchunguzi\n\n- **Onyo la Sumu:** Majani ya muhogo yanaweza kuleta sumu ya cyanide mwilini iwapo yatatumiwa vibaya.\n- **Kuchelewa Hospitalini:** Wagonjwa wanaokwepa hospitali wako hatarini kupata madhara makubwa zaidi.\n- **Ushauri:** Fuata miongozo rasmi kutoka kwa wahudumu wa afya walioidhinishwa.",
           "claim": "Kunywa mchanganyiko uliochemshwa wa majani ya muhogo (sombe) na maji ya miwa kunaponya ugonjwa wa Mpox ndani ya saa 48.",
           "claimant": "Sauti ya WhatsApp iliyosambazwa kwa wingi huko Goma, Bukavu na Uvira",
           "verdictSummary": "UONGO. Hakuna ushahidi wowote wa kitabibu au wa kisayansi unaothibitisha kuwa majani ya muhogo na miwa yanaua virusi vya Mpox. Madaktari wanaonya kuwa kufuata uzushi huu kunachelewesha matibabu hospitalini na kuhatarisha maisha.",
@@ -216,13 +238,16 @@
     {
       "slug": "confirmed-mpox-case-sendwe-hospital-lubumbashi",
       "claimDate": "2024-09-15",
-      "publishDate": "2024-09-18",
+      "publishDate": "2026-10-18",
       "verdictSlug": "true",
       "categorySlug": "mpoxfacts",
       "authorId": "ruth-kutemba",
       "editorId": "fiston-mahamba",
       "verificationMethod": "OFFICIAL_HEALTH_BULLETIN",
       "isFeatured": false,
+      "isTrending": false,
+      "viewsCount": 6120,
+      "sharesCount": 730,
       "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&auto=format&fit=crop&q=80",
       "sources": [
         {
@@ -256,13 +281,18 @@
     {
       "slug": "mpox-vaccine-depopulation-plot-rwanda",
       "claimDate": "2024-09-28",
-      "publishDate": "2024-09-30",
+      "publishDate": "2026-10-10",
       "verdictSlug": "false",
       "categorySlug": "vaccines-science",
       "authorId": "fiston-mahamba",
       "editorId": "john-mukengere",
+      "videoAuthorId": "fiston-mahamba",
       "verificationMethod": "OFFICIAL_HEALTH_BULLETIN",
       "isFeatured": false,
+      "videoUrl": "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+      "isTrending": true,
+      "viewsCount": 18900,
+      "sharesCount": 3100,
       "image": "https://images.unsplash.com/photo-1632833239869-a37e3a5806d2?w=1200&auto=format&fit=crop&q=80",
       "sources": [
         {
@@ -277,6 +307,9 @@
       "locales": {
         "en": {
           "title": "No, Mpox Vaccines Are Not a Western Plot to Depopulate Congo for Rwanda",
+          "videoTitle": "Video Investigation: Tracing Mpox Vaccine Shipments and Dismantling Viral Plots",
+          "videoDescription": "Chief editor Fiston Mahamba tracks the physical and regulatory journey of Bavarian Nordic vaccine batches delivered to Kinshasa.",
+          "videoContent": "### Video Investigation Summary\n\n- **Batch Tracking:** Verification of manufacturer serial numbers at N'djili Airport.\n- **Scientific Safety:** Documentation proving these are the identical JYNNEOS / IMVANEX vaccines used worldwide.\n- **Verdict:** Baseless political conspiracy that exploits real armed conflict.",
           "claim": "Mpox vaccines donated to the DRC are contaminated bioweapons created by the West to eliminate the Congolese population for the benefit of Rwanda.",
           "claimant": "Political influence accounts and sensationalist video blogs on Facebook and X",
           "verdictSummary": "FALSE. The MVA-BN vaccines received by the DRC were manufactured by Bavarian Nordic in Denmark and donated through the European Union and international public health partnerships. These identical vaccines have been administered safely across Europe and North America.",
@@ -285,6 +318,9 @@
         },
         "sw": {
           "title": "Hapana, Chanjo ya Mpox Si Mpango wa Kuangamiza Wakongo kwa Faida ya Rwanda",
+          "videoTitle": "Uchunguzi wa Video: Kufuatilia Safari ya Chanjo za Mpox na Kubomoa Uzushi",
+          "videoDescription": "Mhariri mkuu Fiston Mahamba afuatilia shehena ya chanjo za Bavarian Nordic zilizowasili jijini Kinshasa.",
+          "videoContent": "### Muhtasari wa Video ya Uchunguzi\n\n- **Ufuatiliaji wa Shehena:** Ukaguzi wa nambari za uthibitisho katika uwanja wa N'djili.\n- **Usalama wa Chanjo:** Nyaraka zinazothibitisha kuwa chanjo hizi ni zilezile zinazotumiwa Ulaya na Marekani.\n- **Uamuzi:** Uzushi wa kisiasa unaolenga kuharibu imani ya umma.",
           "claim": "Chanjo za Mpox zilizotolewa msaada kwa DRC ni silaha za kibiolojia zilizotengenezwa na nchi za Magharibi kuangamiza idadi ya watu wa Kongo kwa faida ya Rwanda.",
           "claimant": "Akaunti za uchochezi wa kisiasa na kurasa za video kwenye Facebook na mtandao wa X",
           "verdictSummary": "UONGO. Chanjo za MVA-BN zilizopokewa na DRC zilitengenezwa na kampuni ya Bavarian Nordic nchini Denmark na kutolewa kupitia Umoja wa Ulaya na mashirika ya afya ya kimataifa. Chanjo hizi zinafanana kabisa na zile zilizotumika kwa usalama barani Ulaya na Amerika.",
@@ -296,13 +332,16 @@
     {
       "slug": "pork-meat-consumption-mpox-transmission",
       "claimDate": "2024-09-22",
-      "publishDate": "2024-09-24",
+      "publishDate": "2026-09-28",
       "verdictSlug": "false",
       "categorySlug": "mpoxfacts",
       "authorId": "john-mukengere",
       "editorId": "ruth-kutemba",
       "verificationMethod": "EXPERT_INTERVIEW",
       "isFeatured": false,
+      "isTrending": false,
+      "viewsCount": 4200,
+      "sharesCount": 510,
       "image": "https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&auto=format&fit=crop&q=80",
       "sources": [
         {
@@ -336,13 +375,16 @@
     {
       "slug": "karisimbi-health-zone-1000-cases-exaggerated",
       "claimDate": "2024-09-25",
-      "publishDate": "2024-09-29",
+      "publishDate": "2026-09-20",
       "verdictSlug": "misleading",
       "categorySlug": "mpoxfacts",
       "authorId": "john-mukengere",
       "editorId": "fiston-mahamba",
       "verificationMethod": "OFFICIAL_HEALTH_BULLETIN",
       "isFeatured": false,
+      "isTrending": false,
+      "viewsCount": 3300,
+      "sharesCount": 390,
       "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&auto=format&fit=crop&q=80",
       "sources": [
         {
