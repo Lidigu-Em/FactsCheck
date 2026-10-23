@@ -27,9 +27,9 @@ export default function Footer({ lang, site }: FooterProps) {
                 />
               ) : null}
               <div>
-                <div className="text-white font-black text-xl leading-none">{site.siteName || "KENYA CHECK"}</div>
+                <div className="text-white font-black text-xl leading-none">{site.siteName || "Kenya Check"}</div>
                 {site.tagline ? (
-                  <div className="text-red-400 text-xs font-semibold uppercase tracking-widest">{site.tagline}</div>
+                  <div className="text-red-400 text-xs font-semibold tracking-wider">{site.tagline}</div>
                 ) : null}
               </div>
             </div>

@@ -44,11 +44,11 @@ export default function Navbar({ lang, siteName, tagline, logo, logoAlt }: Navba
             <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-red-600 text-white font-black text-xl shadow-md">✓</span>
           )}
           <div>
-            <div className="font-black text-lg sm:text-xl md:text-2xl leading-none text-white tracking-tight uppercase">
-              {siteName || "KENYA CHECK"}
+            <div className="font-black text-lg sm:text-xl md:text-2xl leading-none text-white tracking-tight">
+              {siteName || "Kenya Check"}
             </div>
             {tagline ? (
-              <div className="text-[10px] sm:text-xs text-red-400 font-bold uppercase tracking-widest mt-1">
+              <div className="text-[10px] sm:text-xs text-red-400 font-bold tracking-wider mt-1">
                 {tagline}
               </div>
             ) : null}

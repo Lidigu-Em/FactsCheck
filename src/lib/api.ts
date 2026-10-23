@@ -233,7 +233,7 @@ export async function getSiteSetting(locale: Locale): Promise<SiteSetting> {
   const loc = raw.locales[locale] ?? raw.locales.en;
 
   const fallback: SiteSetting = {
-    siteName: loc.siteName || "KENYA CHECK",
+    siteName: loc.siteName || "Kenya Check",
     siteTitle: loc.siteTitle || (locale === "sw" ? "Kenya Check EbolaFacts — Ukweli Kuhusu Ebola" : "Kenya Check EbolaFacts — Verified Health Investigations"),
     tagline: loc.tagline || "",
     logo: raw.logo || "",
