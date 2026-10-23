@@ -31,6 +31,8 @@ export interface SourceRef {
 }
 
 export interface FactCheck {
+  id?: string | number;
+  contentType?: "story" | "video";
   slug: string;
   claimDate: string;
   publishDate: string;

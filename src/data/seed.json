@@ -100,6 +100,19 @@
           "description": "Kupinga nadharia potofu za njama za chanjo na upotoshaji wa kisayansi."
         }
       }
+    },
+    {
+      "slug": "videos",
+      "locales": {
+        "en": {
+          "name": "Videos",
+          "description": "Video investigations, multimedia debunks, and health claims verification."
+        },
+        "sw": {
+          "name": "Video",
+          "description": "Uchunguzi wa video, ufafanuzi wa medianuwai, na uthibitishaji wa madai ya afya."
+        }
+      }
     }
   ],
   "authors": [
@@ -408,6 +421,106 @@
           "verdictSummary": "UPOTOSHAJI. Ingawa Karisimbi ni moja ya maeneo yenye maambukizi mkoani Kivu Kaskazini, takwimu rasmi za idara ya afya zilionyesha kesi 312 zilizoshukiwa na kesi 86 zilizothibitishwa na maabara, na si kesi 1,000 kama ilivyodaiwa.",
           "imageCaption": "Vituo vya afya na wadi za matibabu mjini Goma, Kivu Kaskazini.",
           "explanation": "### Hofu Iliyotokea Goma\nUjumbe uliosambaa mjini Goma ulisababisha taharuki ukidai kuwa eneo moja pekee limevuka wagonjwa 1,000, jambo lililosababisha watu kuogopa kwenda hospitali.\n\n### Takwimu Halisi za Afya\nKenya Check ilikagua ripoti ya kila wiki ya Divisheni ya Afya ya Mkoa wa Kivu Kaskazini (DPS):\n\n- Idadi ya watu waliofanyiwa vipimo vya kushukiwa ilikuwa 312.\n- Waliothibitishwa na maabara kuwa na virusi walikuwa 86.\n- Kuzidisha idadi ya wagonjwa kwa zaidi ya mara tatu kunachochea hofu isiyo ya lazima katika jamii.\n\n### Uamuzi (Verdict)\nMadai haya ni **UPOTOSHAJI** kwa sababu yanakuza idadi halisi ili kuibua taharuki."
+        }
+      }
+    }
+  ],
+  "videos": [
+    {
+      "slug": "who-briefing-mpox-vaccine-safety-drc",
+      "claimDate": "2024-10-15",
+      "publishDate": "2026-10-23",
+      "verdictSlug": "true",
+      "categorySlug": "videos",
+      "authorId": "ruth-kutemba",
+      "editorId": "fiston-mahamba",
+      "videoAuthorId": "ruth-kutemba",
+      "verificationMethod": "OFFICIAL_SURVEILLANCE",
+      "isFeatured": true,
+      "videoUrl": "https://www.youtube.com/watch?v=ScMzIvxBSi4",
+      "isTrending": true,
+      "viewsCount": 18450,
+      "sharesCount": 3120,
+      "image": "https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&auto=format&fit=crop&q=80",
+      "sources": [
+        {
+          "title": "World Health Organization Press Briefing on African Vaccine Distribution",
+          "url": "https://www.who.int"
+        },
+        {
+          "title": "Africa CDC Mpox Technical Briefing",
+          "url": "https://africacdc.org"
+        }
+      ],
+      "locales": {
+        "en": {
+          "title": "Video Investigation: WHO Clarifies Mpox Vaccine Safety & Distribution Across DRC Provinces",
+          "videoTitle": "Video Investigation: WHO Clarifies Mpox Vaccine Safety & Distribution Across DRC Provinces",
+          "videoDescription": "Special multimedia report breaking down the clinical trials and efficacy of the JYNNEOS and LC16 vaccines arriving in Central Africa.",
+          "videoContent": "### Video Timeline & Highlights\n\n- **00:00 - Introduction:** Distribution of 250,000 vaccine doses arriving in Kinshasa and Goma.\n- **01:15 - Clinical Trial Verification:** Review of Africa CDC efficacy rates showing 85% protection.\n- **02:30 - Debunking Infertility Myths:** Laboratory immunologists address common social media panic messages.\n- **03:45 - How to Access Vaccines:** Official health centers offering priority vaccinations.",
+          "claim": "The newly arrived Mpox vaccines are experimental and cause irreversible genetic alterations.",
+          "claimant": "Viral WhatsApp audio messages and Facebook Live broadcasts",
+          "verdictSummary": "TRUE SCIENTIFIC SAFETY. Approved vaccines JYNNEOS and LC16 have undergone full multi-phase safety trials worldwide and do not alter human DNA.",
+          "imageCaption": "Medical team inspecting approved vaccine cold chains in Goma.",
+          "explanation": "A complete video investigation documenting the rigorous cold-chain protocols and clinical safety tests backing the current emergency vaccination campaigns."
+        },
+        "sw": {
+          "title": "Uchunguzi wa Video: WHO Yafafanua Usalama na Ugawaji wa Chanjo ya Mpox Nchini DRC",
+          "videoTitle": "Uchunguzi wa Video: WHO Yafafanua Usalama na Ugawaji wa Chanjo ya Mpox Nchini DRC",
+          "videoDescription": "Ripoti maalum ya video inayochambua majaribio ya kliniki na ufanisi wa chanjo za JYNNEOS na LC16 zinazowasili Afrika ya Kati.",
+          "videoContent": "### Muhtasari wa Video na Ratiba ya Matukio\n\n- **00:00 - Utangulizi:** Dozi 250,000 za chanjo zikiwasili jijini Kinshasa na Goma.\n- **01:15 - Uthibitisho wa Majaribio:** Utafiti wa Africa CDC unaoonyesha ulinzi wa 85% dhidi ya virusi.\n- **02:30 - Kukanusha Uzushi wa Ugumba:** Wataalamu wa maabara wakijibu madai ya uongo ya mitandaoni.\n- **03:45 - Mahali pa Kupata Chanjo:** Vituo rasmi vya afya vinavyotoa chanjo kwa kipaumbele.",
+          "claim": "Chanjo mpya za Mpox zilizowasili ni majaribio ya siri na husababisha mabadiliko ya kudumu ya vinasaba (DNA).",
+          "claimant": "Ujumbe wa sauti kwenye WhatsApp na video za Facebook Live",
+          "verdictSummary": "USALAMA ULIOTHIBITISHWA. Chanjo zilizoidhinishwa za JYNNEOS na LC16 zimefanyiwa majaribio kamili ya kimataifa na haziharibu vinasaba vya binadamu.",
+          "imageCaption": "Madaktari wakikagua hifadhi ya chanjo mjini Goma.",
+          "explanation": "Uchunguzi kamili wa video unaoonyesha usalama wa chanjo na namna zinavyotumiwa kuzuia maambukizi ya Mpox."
+        }
+      }
+    },
+    {
+      "slug": "video-debunk-chlorine-solution-cure-myth",
+      "claimDate": "2024-10-10",
+      "publishDate": "2026-10-21",
+      "verdictSlug": "false",
+      "categorySlug": "videos",
+      "authorId": "fiston-mahamba",
+      "editorId": "ruth-kutemba",
+      "videoAuthorId": "fiston-mahamba",
+      "verificationMethod": "LAB_ANALYSIS",
+      "isFeatured": false,
+      "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "isTrending": true,
+      "viewsCount": 12100,
+      "sharesCount": 2190,
+      "image": "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=1200&auto=format&fit=crop&q=80",
+      "sources": [
+        {
+          "title": "Ministry of Public Health - Toxic Ingestion Warning",
+          "url": "https://sante.gouv.cd"
+        }
+      ],
+      "locales": {
+        "en": {
+          "title": "Video Debunk: Ingesting Chlorine Bleach Solutions Does Not Cure Mpox and Causes Severe Toxicity",
+          "videoTitle": "Video Debunk: The Dangerous Chlorine Bleach Cure Myth",
+          "videoDescription": "Investigative report exposing fraudulent online sellers promoting dangerous chemical concoctions as virus cures.",
+          "videoContent": "### Video Timeline & Notes\n\n- **00:00 - The Hazardous Claim:** Social videos urging families to drink diluted chlorine.\n- **00:50 - Toxicological Reality:** Toxicologists explain internal burns and organ damage caused by chlorine ingestion.\n- **01:40 - Approved Medical Care:** How clinical isolation and antiviral therapies safely heal lesions.",
+          "claim": "Drinking chlorine disinfectant or applying pure bleach directly cures Mpox lesions within 24 hours.",
+          "claimant": "TikTok reels and forwarded WhatsApp recipe messages",
+          "verdictSummary": "FALSE AND DANGEROUS. Ingesting chlorine or industrial bleaching agents is highly toxic and corrosive. It does not treat Mpox and can cause fatal chemical burns to the esophagus and stomach.",
+          "imageCaption": "Warning against toxic chemical remedies circulating on social video platforms.",
+          "explanation": "A complete video investigation warning the public against consuming industrial bleaches or disinfectants."
+        },
+        "sw": {
+          "title": "Uchunguzi wa Video: Kunywa Maji ya Klorini Hakutibu Mpox na Ni Hatari Sana kwa Afya",
+          "videoTitle": "Uchunguzi wa Video: Uzushi Hatari wa Dawa ya Maji ya Klorini",
+          "videoDescription": "Ripoti ya video inayofichua hatari ya kemikali za kuua wadudu zinazodaiwa kimakosa kuwa dawa ya kutibu virusi.",
+          "videoContent": "### Ratiba na Muhtasari wa Video\n\n- **00:00 - Madai Hatari:** Video za mtandaoni zinazowashauri watu kunywa klorini.\n- **00:50 - Madhara ya Sumu:** Madaktari wakieleza jinsi klorini inavyochoma koo na tumbo.\n- **01:40 - Matibabu Salama:** Taratibu sahihi za hospitali za kutibu vidonda vya Mpox.",
+          "claim": "Kunywa maji yaliyochanganywa na klorini au kupaka dawa ya kusafishia choo kunatibu vipele vya Mpox ndani ya saa 24.",
+          "claimant": "Video za TikTok na jumbe za sauti za WhatsApp",
+          "verdictSummary": "UONGO NA HATARI KUBWA. Kunywa klorini au kemikali za kusafishia ni sumu kali inayoweza kuharibu koo, tumbo na figo. Haina uwezo wa kutibu Mpox na inaweza kusababisha kifo.",
+          "imageCaption": "Onyo dhidi ya matumizi ya kemikali hatari za viwandani kama dawa.",
+          "explanation": "Uchunguzi kamili wa video unaoonya jamii dhidi ya kunywa kemikali zenye sumu zinazopendekezwa kwenye mitandao ya kijamii."
         }
       }
     }

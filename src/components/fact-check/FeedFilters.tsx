@@ -49,7 +49,9 @@ export default function FeedFilters({
   let tabFiltered = [...factChecks];
 
   if (activeTab === "videos") {
-    tabFiltered = tabFiltered.filter((fc) => Boolean(fc.videoUrl));
+    tabFiltered = tabFiltered.filter(
+      (fc) => fc.categorySlug === "videos" || fc.contentType === "video" || Boolean(fc.videoUrl)
+    );
   } else if (activeTab === "trending") {
     const baseTrending = tabFiltered.filter((fc) => fc.isTrending || (fc.viewsCount && fc.viewsCount > 5000));
     let pool = baseTrending.length > 0 ? baseTrending : tabFiltered;

@@ -54,13 +54,74 @@ function getAuthors(): AuthorInfo[] {
   }));
 }
 
+// ─── Resolve seed videos ──────────────────────────────────────────────────────
+function seedVideos(locale: Locale): FactCheck[] {
+  const verdicts = getVerdicts(locale);
+  const categories = getCategories(locale);
+  const authors = getAuthors();
+  const videoCategory = categories.find((c) => c.slug === "videos") || {
+    slug: "videos",
+    name: locale === "sw" ? "Video" : "Videos",
+    description:
+      locale === "sw"
+        ? "Uchunguzi wa video na ufafanuzi wa medianuwai"
+        : "Video investigations and multimedia debunks",
+  };
+
+  const videosList = rawSeed.videos || [];
+  return videosList.map((v: any) => {
+    const loc = v.locales?.[locale] ?? v.locales?.en ?? {};
+    const verdict = verdicts.find((item) => item.slug === v.verdictSlug);
+    const author = authors.find((a) => a.id === v.authorId);
+    const editor = authors.find((a) => a.id === v.editorId);
+    const videoAuthor = v.videoAuthorId
+      ? authors.find((a) => a.id === v.videoAuthorId)
+      : author;
+
+    return {
+      contentType: "video",
+      slug: v.slug,
+      claimDate: v.claimDate || v.publishDate,
+      publishDate: v.publishDate,
+      verdictSlug: v.verdictSlug || "unproven",
+      categorySlug: "videos",
+      authorId: v.authorId,
+      editorId: v.editorId,
+      videoAuthorId: v.videoAuthorId,
+      verificationMethod: v.verificationMethod || "VIDEO_INVESTIGATION",
+      isFeatured: Boolean(v.isFeatured),
+      videoUrl: v.videoUrl,
+      videoTitle: loc.videoTitle || loc.title,
+      videoDescription:
+        loc.videoDescription || loc.claim || loc.verdictSummary || "",
+      videoContent: loc.videoContent || loc.explanation || "",
+      isTrending: Boolean(v.isTrending),
+      viewsCount: typeof v.viewsCount === "number" ? v.viewsCount : 0,
+      sharesCount: typeof v.sharesCount === "number" ? v.sharesCount : 0,
+      image: v.image,
+      sources: v.sources ?? [],
+      title: loc.title || loc.videoTitle || "",
+      claim: loc.claim || loc.title || "",
+      claimant: loc.claimant || "",
+      verdictSummary: loc.verdictSummary || loc.videoDescription || "",
+      imageCaption: loc.imageCaption || loc.title || "",
+      explanation: loc.explanation || loc.videoContent || "",
+      verdict,
+      category: videoCategory,
+      author,
+      editor,
+      videoAuthor,
+    } as FactCheck;
+  });
+}
+
 // ─── Resolve seed fact-checks ─────────────────────────────────────────────────
 function seedFactChecks(locale: Locale): FactCheck[] {
   const verdicts = getVerdicts(locale);
   const categories = getCategories(locale);
   const authors = getAuthors();
 
-  return rawSeed.factChecks.map((fc: any) => {
+  const standardStories = rawSeed.factChecks.map((fc: any) => {
     const loc = fc.locales[locale] ?? fc.locales.en;
     const verdict = verdicts.find((v) => v.slug === fc.verdictSlug);
     const category = categories.find((c) => c.slug === fc.categorySlug);
@@ -72,6 +133,7 @@ function seedFactChecks(locale: Locale): FactCheck[] {
       ? author
       : undefined;
     return {
+      contentType: "story",
       slug: fc.slug,
       claimDate: fc.claimDate,
       publishDate: fc.publishDate,
@@ -105,6 +167,12 @@ function seedFactChecks(locale: Locale): FactCheck[] {
       videoAuthor,
     } as FactCheck;
   });
+
+  const videoStories = seedVideos(locale);
+  const allStories = [...standardStories, ...videoStories];
+  return allStories.sort(
+    (a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
+  );
 }
 
 // ─── Strapi fetcher (used when STRAPI_URL is set) ────────────────────────────
@@ -129,6 +197,8 @@ async function strapiGet(endpoint: string): Promise<unknown> {
 function mapStrapiFactCheck(item: any): FactCheck {
   const a = item.attributes;
   return {
+    id: item.id,
+    contentType: "story",
     slug: a.slug,
     claimDate: a.claimDate || a.publishedAt || new Date().toISOString(),
     publishDate: a.publishedAt || new Date().toISOString(),
@@ -212,21 +282,102 @@ function mapStrapiFactCheck(item: any): FactCheck {
   };
 }
 
+function mapStrapiVideo(item: any): FactCheck {
+  const a = item.attributes;
+  const authorInfo = a.author?.data?.attributes
+    ? {
+        id: String(a.author.data.id),
+        name: a.author.data.attributes.name,
+        role: a.author.data.attributes.role,
+        bio: a.author.data.attributes.bio,
+        organization: a.author.data.attributes.organization,
+        twitterHandle: a.author.data.attributes.twitterHandle,
+      }
+    : undefined;
+
+  return {
+    id: item.id,
+    contentType: "video",
+    slug: a.slug,
+    claimDate: a.claimDate || a.publishedAt || new Date().toISOString(),
+    publishDate: a.publishedAt || new Date().toISOString(),
+    verdictSlug: a.verdict?.data?.attributes?.slug || "unproven",
+    categorySlug: "videos",
+    authorId: a.author?.data?.id ? String(a.author.data.id) : "",
+    verificationMethod: "VIDEO_INVESTIGATION",
+    isFeatured: Boolean(a.isFeatured),
+    videoUrl: a.videoUrl,
+    videoTitle: a.title,
+    videoDescription: a.description || a.claim || "",
+    videoContent: a.content || "",
+    videoAuthorId: a.author?.data?.id ? String(a.author.data.id) : undefined,
+    isTrending: Boolean(a.isTrending),
+    viewsCount: typeof a.viewsCount === "number" ? a.viewsCount : 0,
+    sharesCount: typeof a.sharesCount === "number" ? a.sharesCount : 0,
+    image:
+      formatImageUrl(a.coverImage?.data?.attributes?.url) ||
+      "https://images.unsplash.com/photo-1584483766114-2cea6facdf57?w=1200&auto=format&fit=crop&q=80",
+    sources: [],
+    title: a.title || "",
+    claim: a.claim || a.title || "",
+    claimant: a.claimant || "",
+    verdictSummary: a.description || "",
+    imageCaption: a.title || "",
+    explanation: a.content || a.description || "",
+    verdict: a.verdict?.data?.attributes
+      ? {
+          slug: a.verdict.data.attributes.slug,
+          name: a.verdict.data.attributes.name,
+          colorCode: a.verdict.data.attributes.colorCode || "#16A34A",
+          iconName: a.verdict.data.attributes.iconName || "video",
+          description: a.verdict.data.attributes.description || "",
+        }
+      : undefined,
+    category: {
+      slug: "videos",
+      name: "Videos",
+      description: "Video investigations and multimedia debunks",
+    },
+    author: authorInfo,
+    videoAuthor: authorInfo,
+  };
+}
+
 // ─── Public API ──────────────────────────────────────────────────────────────
 export async function getAllFactChecks(locale: Locale): Promise<FactCheck[]> {
   if (!STRAPI_URL) return seedFactChecks(locale);
   try {
-    const data: any = await strapiGet(
-      `fact-checks?populate=*&locale=${locale}&pagination[pageSize]=50&sort=publishedAt:desc`
-    );
-    if (!data?.data || data.data.length === 0) {
+    const [factChecksData, videosData]: [any, any] = await Promise.all([
+      strapiGet(
+        `fact-checks?populate=*&locale=${locale}&pagination[pageSize]=50&sort=publishedAt:desc`
+      ).catch(() => ({ data: [] })),
+      strapiGet(
+        `videos?populate=*&locale=${locale}&pagination[pageSize]=50&sort=publishedAt:desc`
+      ).catch(() => ({ data: [] })),
+    ]);
+
+    const mappedFc = (factChecksData?.data || []).map(mapStrapiFactCheck);
+    const mappedVideos = (videosData?.data || []).map(mapStrapiVideo);
+
+    if (mappedFc.length === 0 && mappedVideos.length === 0) {
       if (locale !== "en") {
         try {
-          const enData: any = await strapiGet(
-            `fact-checks?populate=*&locale=en&pagination[pageSize]=50&sort=publishedAt:desc`
-          );
-          if (enData?.data && enData.data.length > 0) {
-            return enData.data.map(mapStrapiFactCheck);
+          const [enFc, enVideos]: [any, any] = await Promise.all([
+            strapiGet(
+              `fact-checks?populate=*&locale=en&pagination[pageSize]=50&sort=publishedAt:desc`
+            ).catch(() => ({ data: [] })),
+            strapiGet(
+              `videos?populate=*&locale=en&pagination[pageSize]=50&sort=publishedAt:desc`
+            ).catch(() => ({ data: [] })),
+          ]);
+          const combinedEn = [
+            ...(enFc?.data || []).map(mapStrapiFactCheck),
+            ...(enVideos?.data || []).map(mapStrapiVideo),
+          ];
+          if (combinedEn.length > 0) {
+            return combinedEn.sort(
+              (a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
+            );
           }
         } catch {
           // ignore
@@ -234,11 +385,25 @@ export async function getAllFactChecks(locale: Locale): Promise<FactCheck[]> {
       }
       return seedFactChecks(locale);
     }
-    return data.data.map(mapStrapiFactCheck);
+
+    const combined = [...mappedFc, ...mappedVideos];
+    return combined.sort(
+      (a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
+    );
   } catch (err) {
-    console.warn("Strapi fact-checks fetch failed, falling back to seed:", err);
+    console.warn("Strapi fetch failed, falling back to seed:", err);
     return seedFactChecks(locale);
   }
+}
+
+export async function getAllVideos(locale: Locale): Promise<FactCheck[]> {
+  const all = await getAllFactChecks(locale);
+  return all.filter(
+    (item) =>
+      item.categorySlug === "videos" ||
+      item.contentType === "video" ||
+      Boolean(item.videoUrl)
+  );
 }
 
 export async function getFactCheck(
@@ -249,21 +414,37 @@ export async function getFactCheck(
     return seedFactChecks(locale).find((fc) => fc.slug === slug) ?? null;
   }
   try {
+    // 1. Try fact-checks collection
     const data: any = await strapiGet(
       `fact-checks?filters[slug][$eq]=${slug}&populate=*&locale=${locale}`
-    );
-    if (!data.data?.length) {
-      if (locale !== "en") {
-        const enData: any = await strapiGet(
-          `fact-checks?filters[slug][$eq]=${slug}&populate=*&locale=en`
-        );
-        if (enData?.data?.length) {
-          return mapStrapiFactCheck(enData.data[0]);
-        }
-      }
-      return seedFactChecks(locale).find((fc) => fc.slug === slug) ?? null;
+    ).catch(() => null);
+    if (data?.data?.length) {
+      return mapStrapiFactCheck(data.data[0]);
     }
-    return mapStrapiFactCheck(data.data[0]);
+
+    // 2. Try videos collection
+    const videoData: any = await strapiGet(
+      `videos?filters[slug][$eq]=${slug}&populate=*&locale=${locale}`
+    ).catch(() => null);
+    if (videoData?.data?.length) {
+      return mapStrapiVideo(videoData.data[0]);
+    }
+
+    if (locale !== "en") {
+      const enData: any = await strapiGet(
+        `fact-checks?filters[slug][$eq]=${slug}&populate=*&locale=en`
+      ).catch(() => null);
+      if (enData?.data?.length) {
+        return mapStrapiFactCheck(enData.data[0]);
+      }
+      const enVideoData: any = await strapiGet(
+        `videos?filters[slug][$eq]=${slug}&populate=*&locale=en`
+      ).catch(() => null);
+      if (enVideoData?.data?.length) {
+        return mapStrapiVideo(enVideoData.data[0]);
+      }
+    }
+    return seedFactChecks(locale).find((fc) => fc.slug === slug) ?? null;
   } catch (err) {
     console.warn(`Strapi getFactCheck(${slug}) failed:`, err);
     return seedFactChecks(locale).find((fc) => fc.slug === slug) ?? null;
